@@ -1,6 +1,6 @@
 {
   "name": "agent-teams-coder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Multi-agent software development team with 7 specialized AI agents: algorithm design, coding, testing, analysis, documentation, logging, led by a coordinator with shared memory governance.",
   "author": {
     "name": "Xinjing Guo",

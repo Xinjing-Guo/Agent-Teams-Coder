@@ -10,7 +10,7 @@
     {
       "name": "agent-teams-coder",
       "description": "7-agent dev team (algorithm, coding, testing, analysis, docs, logging) with shared memory approval, 7-point checkpoint, and /agent-team slash command",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Xinjing Guo",
         "url": "https://github.com/Xinjing-Guo"

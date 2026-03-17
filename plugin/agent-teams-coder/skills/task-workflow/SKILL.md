@@ -1,7 +1,7 @@
 ---
 name: Task Workflow
 description: The 7-phase standard development workflow from requirements to delivery. Use when coordinating multi-agent software development tasks.
-version: 1.0.0
+version: 1.0.1
 ---
 
 # 7-Phase Standard Workflow

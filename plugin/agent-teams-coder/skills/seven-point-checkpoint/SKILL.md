@@ -1,7 +1,7 @@
 ---
 name: Seven-Point Checkpoint
 description: Mandatory pre-task checklist that every agent must complete before executing any work. Activates at the start of every task.
-version: 1.0.0
+version: 1.0.1
 ---
 
 # Seven-Point Mandatory Checkpoint
