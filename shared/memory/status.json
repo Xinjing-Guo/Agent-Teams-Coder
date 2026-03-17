@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "description": "团队实时状态 — 所有 Agent 可读写，用于同步当前工作进展",
+    "last_updated": "",
+    "updated_by": ""
+  },
+  "team_status": {
+    "current_task": "",
+    "phase": "",
+    "phase_description": ""
+  },
+  "members": {
+    "marshall": {
+      "status": "idle",
+      "current_work": "",
+      "blockers": [],
+      "last_active": ""
+    },
+    "euler": {
+      "status": "idle",
+      "current_work": "",
+      "blockers": [],
+      "last_active": ""
+    },
+    "forge": {
+      "status": "idle",
+      "current_work": "",
+      "blockers": [],
+      "last_active": ""
+    },
+    "sentinel": {
+      "status": "idle",
+      "current_work": "",
+      "blockers": [],
+      "last_active": ""
+    },
+    "lens": {
+      "status": "idle",
+      "current_work": "",
+      "blockers": [],
+      "last_active": ""
+    },
+    "atlas": {
+      "status": "idle",
+      "current_work": "",
+      "blockers": [],
+      "last_active": ""
+    },
+    "chronicle": {
+      "status": "idle",
+      "current_work": "",
+      "blockers": [],
+      "last_active": ""
+    }
+  }
+}
