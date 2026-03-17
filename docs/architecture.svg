@@ -82,62 +82,62 @@
   <line x1="600" y1="151" x2="600" y2="185" stroke="#ffd200" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arrowGold)" opacity="0.7"/>
 
   <!-- ═══════ Marshall (Leader) ═══════ -->
-  <rect x="400" y="188" width="400" height="78" rx="16" fill="url(#leaderGrad)" filter="url(#shadow)" opacity="0.95"/>
+  <rect x="350" y="188" width="500" height="78" rx="16" fill="url(#leaderGrad)" filter="url(#shadow)" opacity="0.95"/>
   <text x="600" y="218" text-anchor="middle" fill="#1a1a2e" font-size="22" font-weight="bold">&#x1f451; Marshall  (Leader)</text>
-  <text x="600" y="242" text-anchor="middle" fill="#333" font-size="14">Task Decomposition &#x2192; Assignment &#x2192; Memory Approval &#x2192; Delivery</text>
+  <text x="600" y="240" text-anchor="middle" fill="#333" font-size="13">Decompose &#x2192; Assign &#x2192; Approve Memory &#x2192; Deliver</text>
   <text x="600" y="258" text-anchor="middle" fill="#555" font-size="11">skill: task-decomposition</text>
 
   <!-- Leader → member lines -->
-  <path d="M 460 266 Q 280 310 200 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
-  <path d="M 510 266 Q 460 310 440 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
+  <path d="M 420 266 Q 270 310 185 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
+  <path d="M 500 266 Q 460 310 440 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
   <path d="M 600 266 L 600 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
-  <path d="M 690 266 Q 720 310 740 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
-  <path d="M 740 266 Q 900 310 960 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
+  <path d="M 700 266 Q 730 310 750 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
+  <path d="M 780 266 Q 920 310 970 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
 
   <!-- ═══════ Row 1: Euler, Forge, Sentinel ═══════ -->
 
   <!-- Euler -->
-  <rect x="70" y="342" width="260" height="100" rx="14" fill="url(#eulerGrad)" filter="url(#shadow)" opacity="0.92"/>
-  <text x="200" y="372" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f9ee; Euler</text>
-  <text x="200" y="395" text-anchor="middle" fill="#e0d0ff" font-size="14">Algorithm Designer</text>
-  <text x="200" y="415" text-anchor="middle" fill="#c0b0e0" font-size="12">Modeling &#x00b7; Complexity &#x00b7; Pseudocode</text>
-  <text x="200" y="433" text-anchor="middle" fill="#b0a0d0" font-size="11" font-style="italic">"Conclusion first, then proof"</text>
+  <rect x="55" y="342" width="240" height="100" rx="14" fill="url(#eulerGrad)" filter="url(#shadow)" opacity="0.92"/>
+  <text x="175" y="372" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f9ee; Euler</text>
+  <text x="175" y="395" text-anchor="middle" fill="#e0d0ff" font-size="14">Algorithm Designer</text>
+  <text x="175" y="415" text-anchor="middle" fill="#c0b0e0" font-size="12">Modeling &#x00b7; Complexity &#x00b7; Pseudocode</text>
+  <text x="175" y="433" text-anchor="middle" fill="#b0a0d0" font-size="11" font-style="italic">"Conclusion first, then proof"</text>
 
   <!-- Forge -->
-  <rect x="360" y="342" width="260" height="100" rx="14" fill="url(#forgeGrad)" filter="url(#shadow)" opacity="0.92"/>
-  <text x="490" y="372" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f528; Forge</text>
-  <text x="490" y="395" text-anchor="middle" fill="#d0f0ff" font-size="14">Code Developer</text>
-  <text x="490" y="415" text-anchor="middle" fill="#a0d8e8" font-size="12">Python &#x00b7; C/C++ &#x00b7; R &#x00b7; Julia &#x00b7; Shell</text>
-  <text x="490" y="433" text-anchor="middle" fill="#90c8d8" font-size="11" font-style="italic">"Let the code speak"</text>
+  <rect x="390" y="342" width="240" height="100" rx="14" fill="url(#forgeGrad)" filter="url(#shadow)" opacity="0.92"/>
+  <text x="510" y="372" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f528; Forge</text>
+  <text x="510" y="395" text-anchor="middle" fill="#d0f0ff" font-size="14">Code Developer</text>
+  <text x="510" y="415" text-anchor="middle" fill="#a0d8e8" font-size="12">Python &#x00b7; C/C++ &#x00b7; R &#x00b7; Julia &#x00b7; Shell</text>
+  <text x="510" y="433" text-anchor="middle" fill="#90c8d8" font-size="11" font-style="italic">"Let the code speak"</text>
 
   <!-- Sentinel -->
-  <rect x="650" y="342" width="260" height="100" rx="14" fill="url(#sentinelGrad)" filter="url(#shadow)" opacity="0.92"/>
-  <text x="780" y="372" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f6e1; Sentinel</text>
-  <text x="780" y="395" text-anchor="middle" fill="#ffd0d0" font-size="14">Code Tester</text>
-  <text x="780" y="415" text-anchor="middle" fill="#e0b0b0" font-size="12">pytest &#x00b7; GTest &#x00b7; valgrind &#x00b7; Coverage</text>
-  <text x="780" y="433" text-anchor="middle" fill="#d0a0a0" font-size="11" font-style="italic">"The last line of defense"</text>
+  <rect x="680" y="342" width="240" height="100" rx="14" fill="url(#sentinelGrad)" filter="url(#shadow)" opacity="0.92"/>
+  <text x="800" y="372" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f6e1; Sentinel</text>
+  <text x="800" y="395" text-anchor="middle" fill="#ffd0d0" font-size="14">Code Tester</text>
+  <text x="800" y="415" text-anchor="middle" fill="#e0b0b0" font-size="12">pytest &#x00b7; GTest &#x00b7; valgrind &#x00b7; Coverage</text>
+  <text x="800" y="433" text-anchor="middle" fill="#d0a0a0" font-size="11" font-style="italic">"The last line of defense"</text>
 
-  <!-- Euler ↔ Forge arrows -->
-  <line x1="330" y1="375" x2="360" y2="375" stroke="#647dee" stroke-width="3" marker-end="url(#arrowPurple)" filter="url(#glow)"/>
-  <line x1="360" y1="400" x2="330" y2="400" stroke="#6dd5ed" stroke-width="3" marker-end="url(#arrowBlue)" filter="url(#glow)"/>
-  <text x="345" y="367" text-anchor="middle" fill="#9090ff" font-size="11">Algorithm</text>
-  <text x="345" y="415" text-anchor="middle" fill="#60d0e0" font-size="11">Feedback</text>
+  <!-- Euler ↔ Forge bidirectional arrows (wider gap: 295→390 = 95px) -->
+  <line x1="295" y1="372" x2="380" y2="372" stroke="#647dee" stroke-width="2.5" marker-end="url(#arrowPurple)" filter="url(#glow)"/>
+  <text x="338" y="365" text-anchor="middle" fill="#b0b0ff" font-size="11" font-weight="500">Algorithm</text>
+  <line x1="380" y1="402" x2="295" y2="402" stroke="#6dd5ed" stroke-width="2.5" marker-end="url(#arrowBlue)" filter="url(#glow)"/>
+  <text x="338" y="420" text-anchor="middle" fill="#80d0e8" font-size="11" font-weight="500">Feedback</text>
 
   <!-- Forge → Sentinel -->
-  <line x1="620" y1="380" x2="650" y2="380" stroke="#6dd5ed" stroke-width="2.5" marker-end="url(#arrowBlue)" opacity="0.8"/>
-  <text x="635" y="372" text-anchor="middle" fill="#6dd5ed" font-size="11">Code</text>
+  <line x1="630" y1="378" x2="670" y2="378" stroke="#6dd5ed" stroke-width="2.5" marker-end="url(#arrowBlue)" opacity="0.8"/>
+  <text x="650" y="370" text-anchor="middle" fill="#6dd5ed" font-size="11">Code</text>
   <!-- Sentinel → Forge (Bug) -->
-  <line x1="650" y1="405" x2="620" y2="405" stroke="#f45c43" stroke-width="2.5" marker-end="url(#arrowRed)" opacity="0.8"/>
-  <text x="635" y="420" text-anchor="middle" fill="#f45c43" font-size="11">Bug</text>
+  <line x1="670" y1="408" x2="630" y2="408" stroke="#f45c43" stroke-width="2.5" marker-end="url(#arrowRed)" opacity="0.8"/>
+  <text x="650" y="424" text-anchor="middle" fill="#f45c43" font-size="11">Bug</text>
 
   <!-- ═══════ Row 2: Lens, Atlas ═══════ -->
 
   <!-- Lens -->
   <rect x="210" y="520" width="260" height="100" rx="14" fill="url(#lensGrad)" filter="url(#shadow)" opacity="0.92"/>
   <text x="340" y="550" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f50d; Lens</text>
-  <text x="340" y="573" text-anchor="middle" fill="#d0ffd0" font-size="14">Code Analyst</text>
-  <text x="340" y="593" text-anchor="middle" fill="#a0d8a0" font-size="12">Architecture &#x00b7; Functions &#x00b7; Line-by-line</text>
-  <text x="340" y="611" text-anchor="middle" fill="#90c890" font-size="11" font-style="italic">"Insight into every line of code"</text>
+  <text x="340" y="573" text-anchor="middle" fill="#fff" font-size="14" opacity="0.95">Code Analyst</text>
+  <text x="340" y="593" text-anchor="middle" fill="#003320" font-size="12" font-weight="500">Architecture &#x00b7; Functions &#x00b7; Line-by-line</text>
+  <text x="340" y="611" text-anchor="middle" fill="#00220e" font-size="11" font-style="italic">"Insight into every line of code"</text>
 
   <!-- Atlas -->
   <rect x="540" y="520" width="260" height="100" rx="14" fill="url(#atlasGrad)" filter="url(#shadow)" opacity="0.92"/>
@@ -151,11 +151,11 @@
   <text x="505" y="555" text-anchor="middle" fill="#38ef7d" font-size="12">Analysis Report</text>
 
   <!-- Sentinel → Atlas -->
-  <path d="M 780 442 Q 780 482 700 510" stroke="#f45c43" stroke-width="2" fill="none" marker-end="url(#arrowRed)" opacity="0.7"/>
-  <text x="770" y="485" fill="#f45c43" font-size="11">Test Cases</text>
+  <path d="M 800 442 Q 800 482 710 510" stroke="#f45c43" stroke-width="2" fill="none" marker-end="url(#arrowRed)" opacity="0.7"/>
+  <text x="790" y="485" fill="#f45c43" font-size="11">Test Cases</text>
 
   <!-- Forge → Lens -->
-  <path d="M 440 442 Q 400 480 370 510" stroke="#6dd5ed" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowBlue)" opacity="0.5"/>
+  <path d="M 460 442 Q 410 480 370 510" stroke="#6dd5ed" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowBlue)" opacity="0.5"/>
 
   <!-- ═══════ Chronicle (right panel) ═══════ -->
   <rect x="950" y="188" width="220" height="432" rx="14" fill="url(#chronicleGrad)" filter="url(#shadow)" opacity="0.12"/>
@@ -212,9 +212,9 @@
   <text x="840" y="808" text-anchor="middle" fill="#70b0a0" font-size="11">mtime-cached &#x2014; 97% token savings</text>
 
   <!-- Member → Memory lines -->
-  <line x1="200" y1="442" x2="200" y2="660" stroke="#647dee" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
-  <line x1="490" y1="442" x2="490" y2="660" stroke="#6dd5ed" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
-  <line x1="780" y1="442" x2="780" y2="660" stroke="#f45c43" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="175" y1="442" x2="175" y2="660" stroke="#647dee" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="510" y1="442" x2="510" y2="660" stroke="#6dd5ed" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="800" y1="442" x2="800" y2="660" stroke="#f45c43" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
   <line x1="340" y1="620" x2="340" y2="660" stroke="#38ef7d" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
   <line x1="670" y1="620" x2="670" y2="660" stroke="#ee9ca7" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
 
