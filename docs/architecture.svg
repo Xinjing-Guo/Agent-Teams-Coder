@@ -1,63 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 820" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" font-family="'Segoe UI', 'PingFang SC', 'Helvetica Neue', sans-serif">
   <defs>
-    <!-- 渐变背景 -->
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0f0c29"/>
-      <stop offset="50%" style="stop-color:#1a1a3e"/>
-      <stop offset="100%" style="stop-color:#24243e"/>
+      <stop offset="0%" style="stop-color:#0a0a1a"/>
+      <stop offset="50%" style="stop-color:#12122a"/>
+      <stop offset="100%" style="stop-color:#1a1a35"/>
     </linearGradient>
-    <!-- Leader 金色渐变 -->
     <linearGradient id="leaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#f7971e"/>
       <stop offset="100%" style="stop-color:#ffd200"/>
     </linearGradient>
-    <!-- 算法 紫色渐变 -->
     <linearGradient id="eulerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#7f53ac"/>
       <stop offset="100%" style="stop-color:#647dee"/>
     </linearGradient>
-    <!-- 开发 蓝色渐变 -->
     <linearGradient id="forgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#2193b0"/>
       <stop offset="100%" style="stop-color:#6dd5ed"/>
     </linearGradient>
-    <!-- 测试 红色渐变 -->
     <linearGradient id="sentinelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#eb3349"/>
       <stop offset="100%" style="stop-color:#f45c43"/>
     </linearGradient>
-    <!-- 分析 绿色渐变 -->
     <linearGradient id="lensGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#11998e"/>
       <stop offset="100%" style="stop-color:#38ef7d"/>
     </linearGradient>
-    <!-- 文档 橙色渐变 -->
     <linearGradient id="atlasGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#ee9ca7"/>
       <stop offset="100%" style="stop-color:#ffdde1"/>
     </linearGradient>
-    <!-- 日志 青色渐变 -->
     <linearGradient id="chronicleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#4facfe"/>
       <stop offset="100%" style="stop-color:#00f2fe"/>
     </linearGradient>
-    <!-- 共享记忆 暗色渐变 -->
     <linearGradient id="memoryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2c3e50"/>
-      <stop offset="100%" style="stop-color:#3498db"/>
+      <stop offset="0%" style="stop-color:#1e3c72"/>
+      <stop offset="100%" style="stop-color:#2a5298"/>
     </linearGradient>
-    <!-- 发光滤镜 -->
+    <linearGradient id="approvalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c94b4b"/>
+      <stop offset="100%" style="stop-color:#4b134f"/>
+    </linearGradient>
     <filter id="glow">
       <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
     <filter id="shadow">
-      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-color="#000" flood-opacity="0.4"/>
+      <feDropShadow dx="2" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.5"/>
     </filter>
-    <!-- 箭头标记 -->
     <marker id="arrowGold" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#ffd200" opacity="0.8"/>
     </marker>
@@ -70,210 +60,212 @@
     <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#38ef7d" opacity="0.8"/>
     </marker>
-    <marker id="arrowCyan" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#00f2fe" opacity="0.6"/>
-    </marker>
     <marker id="arrowPurple" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#647dee" opacity="0.8"/>
     </marker>
+    <marker id="arrowWhite" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#fff" opacity="0.5"/>
+    </marker>
   </defs>
 
-  <!-- 背景 -->
-  <rect width="1100" height="820" fill="url(#bg)" rx="16"/>
+  <!-- Background -->
+  <rect width="1200" height="1000" fill="url(#bg)" rx="16"/>
 
-  <!-- 标题 -->
-  <text x="550" y="45" text-anchor="middle" fill="#fff" font-size="22" font-weight="bold" letter-spacing="2">Agent Teams Coder — 协作架构</text>
-  <text x="550" y="68" text-anchor="middle" fill="#aaa" font-size="12">Multi-Agent Software Development Collaboration Framework</text>
+  <!-- ═══════ Header ═══════ -->
+  <text x="600" y="42" text-anchor="middle" fill="#fff" font-size="28" font-weight="bold" letter-spacing="3">Agent Teams Coder</text>
+  <text x="600" y="68" text-anchor="middle" fill="#999" font-size="14">Multi-Agent Software Development Collaboration Framework</text>
+  <text x="600" y="88" text-anchor="middle" fill="#666" font-size="12">github.com/Xinjing-Guo/Agent-Teams-Coder  &#x00b7;  Developer: Xinjing Guo</text>
 
-  <!-- ═══════════ 用户节点 ═══════════ -->
-  <rect x="475" y="85" width="150" height="42" rx="21" fill="#333" stroke="#888" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="530" y="111" fill="#fff" font-size="14">&#x1f464;</text>
-  <text x="548" y="112" fill="#ddd" font-size="15" font-weight="500">用户</text>
+  <!-- ═══════ User Node ═══════ -->
+  <rect x="510" y="105" width="180" height="46" rx="23" fill="#2a2a3a" stroke="#666" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="575" y="134" fill="#ddd" font-size="18" font-weight="500">&#x1f464; User</text>
+  <line x1="600" y1="151" x2="600" y2="185" stroke="#ffd200" stroke-width="2.5" stroke-dasharray="6,3" marker-end="url(#arrowGold)" opacity="0.7"/>
 
-  <!-- 用户→Leader 连线 -->
-  <line x1="550" y1="127" x2="550" y2="168" stroke="#ffd200" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowGold)" opacity="0.7"/>
+  <!-- ═══════ Marshall (Leader) ═══════ -->
+  <rect x="400" y="188" width="400" height="78" rx="16" fill="url(#leaderGrad)" filter="url(#shadow)" opacity="0.95"/>
+  <text x="600" y="218" text-anchor="middle" fill="#1a1a2e" font-size="22" font-weight="bold">&#x1f451; Marshall  (Leader)</text>
+  <text x="600" y="242" text-anchor="middle" fill="#333" font-size="14">Task Decomposition &#x2192; Assignment &#x2192; Memory Approval &#x2192; Delivery</text>
+  <text x="600" y="258" text-anchor="middle" fill="#555" font-size="11">skill: task-decomposition</text>
 
-  <!-- ═══════════ Marshall（Leader）═══════════ -->
-  <rect x="400" y="170" width="300" height="72" rx="14" fill="url(#leaderGrad)" filter="url(#shadow)" opacity="0.95"/>
-  <text x="550" y="198" text-anchor="middle" fill="#1a1a2e" font-size="18" font-weight="bold">&#x1f451; Marshall（Leader）</text>
-  <text x="550" y="218" text-anchor="middle" fill="#333" font-size="11">任务拆解 &#x2192; 分配 &#x2192; 审批 &#x2192; 汇总交付</text>
-  <text x="550" y="233" text-anchor="middle" fill="#555" font-size="10">skills: task-decomposition</text>
+  <!-- Leader → member lines -->
+  <path d="M 460 266 Q 280 310 200 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
+  <path d="M 510 266 Q 460 310 440 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
+  <path d="M 600 266 L 600 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
+  <path d="M 690 266 Q 720 310 740 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
+  <path d="M 740 266 Q 900 310 960 340" stroke="#ffd200" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.5"/>
 
-  <!-- ═══════════ Leader → 各成员连线 ═══════════ -->
-  <!-- Leader → Euler -->
-  <path d="M 445 242 Q 300 280 220 310" stroke="#ffd200" stroke-width="1.8" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.6"/>
-  <!-- Leader → Forge -->
-  <path d="M 480 242 Q 440 280 420 310" stroke="#ffd200" stroke-width="1.8" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.6"/>
-  <!-- Leader → Sentinel -->
-  <path d="M 550 242 L 550 310" stroke="#ffd200" stroke-width="1.8" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.6"/>
-  <!-- Leader → Lens -->
-  <path d="M 620 242 Q 660 280 680 310" stroke="#ffd200" stroke-width="1.8" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.6"/>
-  <!-- Leader → Atlas -->
-  <path d="M 655 242 Q 800 280 880 310" stroke="#ffd200" stroke-width="1.8" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowGold)" opacity="0.6"/>
-  <!-- Leader → Chronicle -->
-  <path d="M 700 210 Q 900 200 980 215" stroke="#ffd200" stroke-width="1.2" fill="none" stroke-dasharray="3,3" marker-end="url(#arrowGold)" opacity="0.4"/>
-
-  <!-- ═══════════ 第一行成员: Euler, Forge, Sentinel ═══════════ -->
+  <!-- ═══════ Row 1: Euler, Forge, Sentinel ═══════ -->
 
   <!-- Euler -->
-  <rect x="100" y="312" width="220" height="90" rx="12" fill="url(#eulerGrad)" filter="url(#shadow)" opacity="0.92"/>
-  <text x="210" y="338" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">&#x1f9ee; Euler（算法设计师）</text>
-  <text x="210" y="358" text-anchor="middle" fill="#e0d0ff" font-size="11">算法设计 &#x00b7; 数学建模 &#x00b7; 复杂度分析</text>
-  <text x="210" y="375" text-anchor="middle" fill="#c0b0e0" font-size="10">skills: algorithm-design, complexity-analysis</text>
-  <text x="210" y="393" text-anchor="middle" fill="#b0a0d0" font-size="9" font-style="italic">&#x201c;先说结论，再展开推导&#x201d;</text>
+  <rect x="70" y="342" width="260" height="100" rx="14" fill="url(#eulerGrad)" filter="url(#shadow)" opacity="0.92"/>
+  <text x="200" y="372" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f9ee; Euler</text>
+  <text x="200" y="395" text-anchor="middle" fill="#e0d0ff" font-size="14">Algorithm Designer</text>
+  <text x="200" y="415" text-anchor="middle" fill="#c0b0e0" font-size="12">Modeling &#x00b7; Complexity &#x00b7; Pseudocode</text>
+  <text x="200" y="433" text-anchor="middle" fill="#b0a0d0" font-size="11" font-style="italic">"Conclusion first, then proof"</text>
 
   <!-- Forge -->
-  <rect x="345" y="312" width="220" height="90" rx="12" fill="url(#forgeGrad)" filter="url(#shadow)" opacity="0.92"/>
-  <text x="455" y="338" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">&#x1f528; Forge（代码开发）</text>
-  <text x="455" y="358" text-anchor="middle" fill="#d0f0ff" font-size="11">Python &#x00b7; C/C++ &#x00b7; R &#x00b7; Julia &#x00b7; Shell</text>
-  <text x="455" y="375" text-anchor="middle" fill="#a0d8e8" font-size="10">skills: multi-language-coding, code-review</text>
-  <text x="455" y="393" text-anchor="middle" fill="#90c8d8" font-size="9" font-style="italic">&#x201c;用代码说话&#x201d;</text>
+  <rect x="360" y="342" width="260" height="100" rx="14" fill="url(#forgeGrad)" filter="url(#shadow)" opacity="0.92"/>
+  <text x="490" y="372" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f528; Forge</text>
+  <text x="490" y="395" text-anchor="middle" fill="#d0f0ff" font-size="14">Code Developer</text>
+  <text x="490" y="415" text-anchor="middle" fill="#a0d8e8" font-size="12">Python &#x00b7; C/C++ &#x00b7; R &#x00b7; Julia &#x00b7; Shell</text>
+  <text x="490" y="433" text-anchor="middle" fill="#90c8d8" font-size="11" font-style="italic">"Let the code speak"</text>
 
   <!-- Sentinel -->
-  <rect x="590" y="312" width="220" height="90" rx="12" fill="url(#sentinelGrad)" filter="url(#shadow)" opacity="0.92"/>
-  <text x="700" y="338" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">&#x1f6e1; Sentinel（代码测试）</text>
-  <text x="700" y="358" text-anchor="middle" fill="#ffd0d0" font-size="11">pytest &#x00b7; GTest &#x00b7; valgrind &#x00b7; 覆盖率</text>
-  <text x="700" y="375" text-anchor="middle" fill="#e0b0b0" font-size="10">skills: test-strategy, bug-tracking</text>
-  <text x="700" y="393" text-anchor="middle" fill="#d0a0a0" font-size="9" font-style="italic">&#x201c;质量的最后一道防线&#x201d;</text>
+  <rect x="650" y="342" width="260" height="100" rx="14" fill="url(#sentinelGrad)" filter="url(#shadow)" opacity="0.92"/>
+  <text x="780" y="372" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f6e1; Sentinel</text>
+  <text x="780" y="395" text-anchor="middle" fill="#ffd0d0" font-size="14">Code Tester</text>
+  <text x="780" y="415" text-anchor="middle" fill="#e0b0b0" font-size="12">pytest &#x00b7; GTest &#x00b7; valgrind &#x00b7; Coverage</text>
+  <text x="780" y="433" text-anchor="middle" fill="#d0a0a0" font-size="11" font-style="italic">"The last line of defense"</text>
 
-  <!-- ═══════════ Euler ↔ Forge 双向协作线 ═══════════ -->
-  <line x1="320" y1="345" x2="345" y2="345" stroke="#647dee" stroke-width="2.5" marker-end="url(#arrowPurple)" filter="url(#glow)"/>
-  <line x1="345" y1="365" x2="320" y2="365" stroke="#6dd5ed" stroke-width="2.5" marker-end="url(#arrowBlue)" filter="url(#glow)"/>
-  <text x="333" y="338" text-anchor="middle" fill="#9090ff" font-size="8">算法</text>
-  <text x="333" y="378" text-anchor="middle" fill="#60d0e0" font-size="8">反馈</text>
+  <!-- Euler ↔ Forge arrows -->
+  <line x1="330" y1="375" x2="360" y2="375" stroke="#647dee" stroke-width="3" marker-end="url(#arrowPurple)" filter="url(#glow)"/>
+  <line x1="360" y1="400" x2="330" y2="400" stroke="#6dd5ed" stroke-width="3" marker-end="url(#arrowBlue)" filter="url(#glow)"/>
+  <text x="345" y="367" text-anchor="middle" fill="#9090ff" font-size="11">Algorithm</text>
+  <text x="345" y="415" text-anchor="middle" fill="#60d0e0" font-size="11">Feedback</text>
 
   <!-- Forge → Sentinel -->
-  <line x1="565" y1="355" x2="590" y2="355" stroke="#6dd5ed" stroke-width="2" marker-end="url(#arrowBlue)" opacity="0.8"/>
-  <text x="578" y="348" text-anchor="middle" fill="#6dd5ed" font-size="8">代码</text>
-
+  <line x1="620" y1="380" x2="650" y2="380" stroke="#6dd5ed" stroke-width="2.5" marker-end="url(#arrowBlue)" opacity="0.8"/>
+  <text x="635" y="372" text-anchor="middle" fill="#6dd5ed" font-size="11">Code</text>
   <!-- Sentinel → Forge (Bug) -->
-  <line x1="590" y1="375" x2="565" y2="375" stroke="#f45c43" stroke-width="2" marker-end="url(#arrowRed)" opacity="0.8"/>
-  <text x="578" y="388" text-anchor="middle" fill="#f45c43" font-size="8">Bug</text>
+  <line x1="650" y1="405" x2="620" y2="405" stroke="#f45c43" stroke-width="2.5" marker-end="url(#arrowRed)" opacity="0.8"/>
+  <text x="635" y="420" text-anchor="middle" fill="#f45c43" font-size="11">Bug</text>
 
-  <!-- ═══════════ 第二行成员: Lens, Atlas ═══════════ -->
+  <!-- ═══════ Row 2: Lens, Atlas ═══════ -->
 
   <!-- Lens -->
-  <rect x="220" y="480" width="220" height="90" rx="12" fill="url(#lensGrad)" filter="url(#shadow)" opacity="0.92"/>
-  <text x="330" y="506" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">&#x1f50d; Lens（代码分析）</text>
-  <text x="330" y="526" text-anchor="middle" fill="#d0ffd0" font-size="11">结构分析 &#x00b7; 函数解读 &#x00b7; 逐行解释</text>
-  <text x="330" y="543" text-anchor="middle" fill="#a0d8a0" font-size="10">skills: code-analysis-framework</text>
-  <text x="330" y="561" text-anchor="middle" fill="#90c890" font-size="9" font-style="italic">&#x201c;洞察每一行代码的意图&#x201d;</text>
+  <rect x="210" y="520" width="260" height="100" rx="14" fill="url(#lensGrad)" filter="url(#shadow)" opacity="0.92"/>
+  <text x="340" y="550" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f50d; Lens</text>
+  <text x="340" y="573" text-anchor="middle" fill="#d0ffd0" font-size="14">Code Analyst</text>
+  <text x="340" y="593" text-anchor="middle" fill="#a0d8a0" font-size="12">Architecture &#x00b7; Functions &#x00b7; Line-by-line</text>
+  <text x="340" y="611" text-anchor="middle" fill="#90c890" font-size="11" font-style="italic">"Insight into every line of code"</text>
 
   <!-- Atlas -->
-  <rect x="530" y="480" width="220" height="90" rx="12" fill="url(#atlasGrad)" filter="url(#shadow)" opacity="0.92"/>
-  <text x="640" y="506" text-anchor="middle" fill="#4a2030" font-size="16" font-weight="bold">&#x1f4d6; Atlas（文档工程师）</text>
-  <text x="640" y="526" text-anchor="middle" fill="#6a3040" font-size="11">介绍 &#x00b7; 使用说明 &#x00b7; 案例 &#x00b7; 逐行解释</text>
-  <text x="640" y="543" text-anchor="middle" fill="#7a4050" font-size="10">skills: manual-structure</text>
-  <text x="640" y="561" text-anchor="middle" fill="#8a5060" font-size="9" font-style="italic">&#x201c;让任何人都能理解和使用&#x201d;</text>
+  <rect x="540" y="520" width="260" height="100" rx="14" fill="url(#atlasGrad)" filter="url(#shadow)" opacity="0.92"/>
+  <text x="670" y="550" text-anchor="middle" fill="#4a2030" font-size="20" font-weight="bold">&#x1f4d6; Atlas</text>
+  <text x="670" y="573" text-anchor="middle" fill="#6a3040" font-size="14">Documentation Engineer</text>
+  <text x="670" y="593" text-anchor="middle" fill="#7a4050" font-size="12">Manual: Intro &#x00b7; Guide &#x00b7; Examples &#x00b7; Code</text>
+  <text x="670" y="611" text-anchor="middle" fill="#8a5060" font-size="11" font-style="italic">"Anyone can understand and use it"</text>
 
   <!-- Lens → Atlas -->
-  <line x1="440" y1="525" x2="530" y2="525" stroke="#38ef7d" stroke-width="2.5" marker-end="url(#arrowGreen)" filter="url(#glow)"/>
-  <text x="485" y="518" text-anchor="middle" fill="#38ef7d" font-size="9">代码分析报告</text>
+  <line x1="470" y1="565" x2="540" y2="565" stroke="#38ef7d" stroke-width="3" marker-end="url(#arrowGreen)" filter="url(#glow)"/>
+  <text x="505" y="555" text-anchor="middle" fill="#38ef7d" font-size="12">Analysis Report</text>
 
   <!-- Sentinel → Atlas -->
-  <path d="M 700 402 Q 700 440 660 470" stroke="#f45c43" stroke-width="1.8" fill="none" marker-end="url(#arrowRed)" opacity="0.7"/>
-  <text x="710" y="445" fill="#f45c43" font-size="9">测试用例</text>
-
-  <!-- Sentinel → Lens (共享理解) -->
-  <path d="M 620 402 Q 500 440 380 470" stroke="#f45c43" stroke-width="1.2" fill="none" stroke-dasharray="4,3" opacity="0.4"/>
+  <path d="M 780 442 Q 780 482 700 510" stroke="#f45c43" stroke-width="2" fill="none" marker-end="url(#arrowRed)" opacity="0.7"/>
+  <text x="770" y="485" fill="#f45c43" font-size="11">Test Cases</text>
 
   <!-- Forge → Lens -->
-  <path d="M 420 402 Q 380 440 350 470" stroke="#6dd5ed" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arrowBlue)" opacity="0.5"/>
-  <text x="370" y="445" fill="#6dd5ed" font-size="9">代码</text>
+  <path d="M 440 442 Q 400 480 370 510" stroke="#6dd5ed" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowBlue)" opacity="0.5"/>
 
-  <!-- ═══════════ Chronicle（右侧独立）═══════════ -->
-  <rect x="870" y="170" width="200" height="400" rx="12" fill="url(#chronicleGrad)" filter="url(#shadow)" opacity="0.15"/>
-  <rect x="880" y="180" width="180" height="80" rx="10" fill="url(#chronicleGrad)" filter="url(#shadow)" opacity="0.92"/>
-  <text x="970" y="208" text-anchor="middle" fill="#003" font-size="16" font-weight="bold">&#x1f4dc; Chronicle</text>
-  <text x="970" y="226" text-anchor="middle" fill="#004" font-size="12">（日志记录）</text>
-  <text x="970" y="245" text-anchor="middle" fill="#005" font-size="10">skills: activity-logging</text>
+  <!-- ═══════ Chronicle (right panel) ═══════ -->
+  <rect x="950" y="188" width="220" height="432" rx="14" fill="url(#chronicleGrad)" filter="url(#shadow)" opacity="0.12"/>
+  <rect x="960" y="198" width="200" height="90" rx="12" fill="url(#chronicleGrad)" filter="url(#shadow)" opacity="0.92"/>
+  <text x="1060" y="230" text-anchor="middle" fill="#003" font-size="20" font-weight="bold">&#x1f4dc; Chronicle</text>
+  <text x="1060" y="253" text-anchor="middle" fill="#004" font-size="14">Log Recorder</text>
+  <text x="1060" y="275" text-anchor="middle" fill="#005" font-size="11">skill: activity-logging</text>
 
-  <!-- Chronicle 监听标签 -->
-  <text x="970" y="285" text-anchor="middle" fill="#4facfe" font-size="11" font-weight="500">&#x1f4e1; 监听全员活动</text>
+  <text x="1060" y="315" text-anchor="middle" fill="#4facfe" font-size="14" font-weight="600">&#x1f4e1; Monitors All</text>
+  <g opacity="0.7" font-size="13" fill="#70c0ff">
+    <text x="1060" y="340" text-anchor="middle">&#x25cf; Marshall tasks</text>
+    <text x="1060" y="362" text-anchor="middle">&#x25cf; Euler algorithms</text>
+    <text x="1060" y="384" text-anchor="middle">&#x25cf; Forge code</text>
+    <text x="1060" y="406" text-anchor="middle">&#x25cf; Sentinel tests</text>
+    <text x="1060" y="428" text-anchor="middle">&#x25cf; Lens analysis</text>
+    <text x="1060" y="450" text-anchor="middle">&#x25cf; Atlas docs</text>
+  </g>
+  <text x="1060" y="480" text-anchor="middle" fill="#4facfe" font-size="12">&#x1f4cb; Generates update summaries</text>
 
-  <g opacity="0.6">
-    <text x="970" y="310" text-anchor="middle" fill="#70c0ff" font-size="10">&#x25cf; Marshall 任务分配</text>
-    <text x="970" y="330" text-anchor="middle" fill="#70c0ff" font-size="10">&#x25cf; Euler 算法设计</text>
-    <text x="970" y="350" text-anchor="middle" fill="#70c0ff" font-size="10">&#x25cf; Forge 代码开发</text>
-    <text x="970" y="370" text-anchor="middle" fill="#70c0ff" font-size="10">&#x25cf; Sentinel 测试报告</text>
-    <text x="970" y="390" text-anchor="middle" fill="#70c0ff" font-size="10">&#x25cf; Lens 代码分析</text>
-    <text x="970" y="410" text-anchor="middle" fill="#70c0ff" font-size="10">&#x25cf; Atlas 文档更新</text>
+  <!-- Chronicle monitor lines -->
+  <line x1="950" y1="240" x2="800" y2="230" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="950" y1="380" x2="910" y2="390" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="950" y1="450" x2="800" y2="570" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4,4" opacity="0.25"/>
+
+  <!-- ═══════ SHARED MEMORY MECHANISM (key section) ═══════ -->
+  <rect x="70" y="660" width="1060" height="175" rx="16" fill="url(#memoryGrad)" filter="url(#shadow)" opacity="0.9" stroke="#3498db" stroke-width="1.5"/>
+
+  <!-- Title bar -->
+  <text x="600" y="690" text-anchor="middle" fill="#fff" font-size="20" font-weight="bold">&#x1f4be; Shared Memory Governance</text>
+  <text x="600" y="710" text-anchor="middle" fill="#8ab8d8" font-size="12">The core mechanism ensuring team knowledge consistency</text>
+
+  <!-- Three boxes inside -->
+  <!-- shared-memory.json -->
+  <rect x="90" y="722" width="280" height="95" rx="10" fill="#1a3050" stroke="#4a90d9" stroke-width="1.2" opacity="0.9"/>
+  <text x="230" y="745" text-anchor="middle" fill="#ffd200" font-size="15" font-weight="bold">&#x1f512; shared-memory.json</text>
+  <text x="230" y="765" text-anchor="middle" fill="#a0c8e8" font-size="12">Architecture decisions, API conventions,</text>
+  <text x="230" y="782" text-anchor="middle" fill="#a0c8e8" font-size="12">coding standards, algorithm specs</text>
+  <text x="230" y="805" text-anchor="middle" fill="#70a0c0" font-size="11">Read: ALL &#x2713;  |  Write: Approval Required &#x1f512;</text>
+
+  <!-- approval-queue.json -->
+  <rect x="395" y="722" width="280" height="95" rx="10" fill="#301830" stroke="#c94b9b" stroke-width="1.2" opacity="0.9"/>
+  <text x="535" y="745" text-anchor="middle" fill="#ff8080" font-size="15" font-weight="bold">&#x1f4cb; Approval Flow</text>
+  <g font-size="12" fill="#d0a0c0">
+    <text x="535" y="767" text-anchor="middle">Member submits request (pending)</text>
+    <text x="535" y="787" text-anchor="middle">&#x2193;</text>
+    <text x="535" y="803" text-anchor="middle">Marshall reviews &#x2192; approve / reject</text>
   </g>
 
-  <text x="970" y="445" text-anchor="middle" fill="#4facfe" font-size="10">&#x1f4cb; 生成更新总结</text>
+  <!-- status.json + notifications -->
+  <rect x="700" y="722" width="280" height="95" rx="10" fill="#103030" stroke="#38ef7d" stroke-width="1.2" opacity="0.9"/>
+  <text x="840" y="745" text-anchor="middle" fill="#38ef7d" font-size="15" font-weight="bold">&#x1f4ca; Live Sync</text>
+  <text x="840" y="768" text-anchor="middle" fill="#a0d8c0" font-size="12">status.json &#x2014; real-time team state</text>
+  <text x="840" y="788" text-anchor="middle" fill="#a0d8c0" font-size="12">notifications/ &#x2014; async messages</text>
+  <text x="840" y="808" text-anchor="middle" fill="#70b0a0" font-size="11">mtime-cached &#x2014; 97% token savings</text>
 
-  <!-- Chronicle 监听虚线 -->
-  <line x1="870" y1="220" x2="700" y2="210" stroke="#00f2fe" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
-  <line x1="870" y1="350" x2="810" y2="355" stroke="#00f2fe" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
-  <line x1="870" y1="380" x2="750" y2="525" stroke="#00f2fe" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
+  <!-- Member → Memory lines -->
+  <line x1="200" y1="442" x2="200" y2="660" stroke="#647dee" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="490" y1="442" x2="490" y2="660" stroke="#6dd5ed" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="780" y1="442" x2="780" y2="660" stroke="#f45c43" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="340" y1="620" x2="340" y2="660" stroke="#38ef7d" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
+  <line x1="670" y1="620" x2="670" y2="660" stroke="#ee9ca7" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.25"/>
 
-  <!-- ═══════════ 共享记忆底部 ═══════════ -->
-  <rect x="100" y="620" width="870" height="80" rx="14" fill="url(#memoryGrad)" filter="url(#shadow)" opacity="0.9" stroke="#3498db" stroke-width="1"/>
-  <text x="535" y="648" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">&#x1f4be; 共享工作区  shared/</text>
+  <!-- ═══════ Workflow Pipeline ═══════ -->
+  <rect x="70" y="865" width="1060" height="65" rx="12" fill="#151525" stroke="#333" stroke-width="1"/>
+  <text x="600" y="888" text-anchor="middle" fill="#bbb" font-size="14" font-weight="600">&#x1f504; Standard Workflow &#x2014; 7 Phases</text>
 
-  <g font-size="11" fill="#a0c8e8">
-    <text x="170" y="674">&#x1f512; shared-memory.json</text>
-    <text x="380" y="674">&#x1f4cb; approval-queue.json</text>
-    <text x="580" y="674">&#x1f4ca; status.json</text>
-    <text x="760" y="674">&#x1f514; notifications/</text>
-  </g>
-  <text x="535" y="694" text-anchor="middle" fill="#708090" font-size="9">读取: 所有人自由 &#x00a0;|&#x00a0; 写入 shared-memory: 需 Marshall 审批 &#x00a0;|&#x00a0; status: 所有人可写</text>
+  <g font-size="12" font-weight="500">
+    <circle cx="120" cy="912" r="8" fill="#ffd200"/>
+    <text x="120" y="916" text-anchor="middle" fill="#1a1a2e" font-size="9" font-weight="bold">M</text>
+    <text x="120" y="930" text-anchor="middle" fill="#ccc" font-size="10">Require</text>
 
-  <!-- 成员 → 共享记忆 连线 -->
-  <line x1="210" y1="402" x2="210" y2="620" stroke="#647dee" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
-  <line x1="455" y1="402" x2="455" y2="620" stroke="#6dd5ed" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
-  <line x1="700" y1="402" x2="700" y2="620" stroke="#f45c43" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
-  <line x1="330" y1="570" x2="330" y2="620" stroke="#38ef7d" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
-  <line x1="640" y1="570" x2="640" y2="620" stroke="#ee9ca7" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+    <line x1="130" y1="912" x2="230" y2="912" stroke="#555" stroke-width="2"/>
+    <circle cx="240" cy="912" r="8" fill="#647dee"/>
+    <text x="240" y="916" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">E</text>
+    <text x="240" y="930" text-anchor="middle" fill="#ccc" font-size="10">Algorithm</text>
 
-  <!-- ═══════════ 工作流阶段指示条 ═══════════ -->
-  <rect x="100" y="730" width="870" height="55" rx="10" fill="#1a1a3e" stroke="#333" stroke-width="1"/>
-  <text x="535" y="750" text-anchor="middle" fill="#aaa" font-size="11" font-weight="500">&#x1f504; 标准工作流 7 阶段</text>
+    <line x1="250" y1="912" x2="370" y2="912" stroke="#555" stroke-width="2"/>
+    <circle cx="380" cy="912" r="8" fill="#6dd5ed"/>
+    <text x="380" y="916" text-anchor="middle" fill="#1a1a2e" font-size="9" font-weight="bold">F</text>
+    <text x="380" y="930" text-anchor="middle" fill="#ccc" font-size="10">Develop</text>
 
-  <g font-size="10" font-weight="500">
-    <!-- 阶段圆点和标签 -->
-    <circle cx="140" cy="770" r="6" fill="#ffd200"/>
-    <text x="140" y="785" text-anchor="middle" fill="#ccc" font-size="9">1.需求</text>
+    <line x1="390" y1="912" x2="510" y2="912" stroke="#555" stroke-width="2"/>
+    <circle cx="520" cy="912" r="8" fill="#f45c43"/>
+    <text x="520" y="916" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold">S</text>
+    <text x="520" y="930" text-anchor="middle" fill="#ccc" font-size="10">Test</text>
 
-    <line x1="148" y1="770" x2="230" y2="770" stroke="#555" stroke-width="1.5"/>
-    <circle cx="240" cy="770" r="6" fill="#647dee"/>
-    <text x="240" y="785" text-anchor="middle" fill="#ccc" font-size="9">2.算法</text>
+    <line x1="530" y1="912" x2="650" y2="912" stroke="#555" stroke-width="2"/>
+    <circle cx="660" cy="912" r="8" fill="#38ef7d"/>
+    <text x="660" y="916" text-anchor="middle" fill="#1a1a2e" font-size="9" font-weight="bold">L</text>
+    <text x="660" y="930" text-anchor="middle" fill="#ccc" font-size="10">Analyze</text>
 
-    <line x1="248" y1="770" x2="340" y2="770" stroke="#555" stroke-width="1.5"/>
-    <circle cx="350" cy="770" r="6" fill="#6dd5ed"/>
-    <text x="350" y="785" text-anchor="middle" fill="#ccc" font-size="9">3.开发</text>
+    <line x1="670" y1="912" x2="790" y2="912" stroke="#555" stroke-width="2"/>
+    <circle cx="800" cy="912" r="8" fill="#ee9ca7"/>
+    <text x="800" y="916" text-anchor="middle" fill="#4a2030" font-size="9" font-weight="bold">A</text>
+    <text x="800" y="930" text-anchor="middle" fill="#ccc" font-size="10">Document</text>
 
-    <line x1="358" y1="770" x2="450" y2="770" stroke="#555" stroke-width="1.5"/>
-    <circle cx="460" cy="770" r="6" fill="#f45c43"/>
-    <text x="460" y="785" text-anchor="middle" fill="#ccc" font-size="9">4.测试</text>
+    <line x1="810" y1="912" x2="930" y2="912" stroke="#555" stroke-width="2"/>
+    <circle cx="940" cy="912" r="8" fill="#ffd200"/>
+    <text x="940" y="916" text-anchor="middle" fill="#1a1a2e" font-size="9" font-weight="bold">M</text>
+    <text x="940" y="930" text-anchor="middle" fill="#ccc" font-size="10">Deliver</text>
 
-    <line x1="468" y1="770" x2="560" y2="770" stroke="#555" stroke-width="1.5"/>
-    <circle cx="570" cy="770" r="6" fill="#38ef7d"/>
-    <text x="570" y="785" text-anchor="middle" fill="#ccc" font-size="9">5.分析</text>
-
-    <line x1="578" y1="770" x2="670" y2="770" stroke="#555" stroke-width="1.5"/>
-    <circle cx="680" cy="770" r="6" fill="#ee9ca7"/>
-    <text x="680" y="785" text-anchor="middle" fill="#ccc" font-size="9">6.文档</text>
-
-    <line x1="688" y1="770" x2="780" y2="770" stroke="#555" stroke-width="1.5"/>
-    <circle cx="790" cy="770" r="6" fill="#ffd200"/>
-    <text x="790" y="785" text-anchor="middle" fill="#ccc" font-size="9">7.交付</text>
-
-    <!-- 负责人标注 -->
-    <text x="140" y="770" text-anchor="middle" fill="#1a1a2e" font-size="7" dy="3">M</text>
-    <text x="240" y="770" text-anchor="middle" fill="#fff" font-size="7" dy="3">E</text>
-    <text x="350" y="770" text-anchor="middle" fill="#1a1a2e" font-size="7" dy="3">F</text>
-    <text x="460" y="770" text-anchor="middle" fill="#fff" font-size="7" dy="3">S</text>
-    <text x="570" y="770" text-anchor="middle" fill="#1a1a2e" font-size="7" dy="3">L</text>
-    <text x="680" y="770" text-anchor="middle" fill="#4a2030" font-size="7" dy="3">A</text>
-    <text x="790" y="770" text-anchor="middle" fill="#1a1a2e" font-size="7" dy="3">M</text>
-
-    <!-- Bug 修复循环箭头 -->
-    <path d="M 460 758 Q 405 738 350 758" stroke="#f45c43" stroke-width="1.2" fill="none" marker-end="url(#arrowRed)" opacity="0.6"/>
-    <text x="405" y="738" text-anchor="middle" fill="#f45c43" font-size="8">Bug &#x21ba;</text>
+    <!-- Bug fix loop -->
+    <path d="M 520 900 Q 450 878 380 900" stroke="#f45c43" stroke-width="1.5" fill="none" marker-end="url(#arrowRed)" opacity="0.7"/>
+    <text x="450" y="878" text-anchor="middle" fill="#f45c43" font-size="10">Bug &#x21ba; Fix</text>
   </g>
 
-  <!-- ═══════════ 七步检查点小标 ═══════════ -->
-  <rect x="100" y="800" width="870" height="14" rx="4" fill="#222"/>
-  <text x="535" y="811" text-anchor="middle" fill="#666" font-size="9">&#x26a1; 七步检查点: 任务确认 &#x2192; 共享记忆 &#x2192; 通知检查 &#x2192; 状态同步 &#x2192; Skill 检查 &#x2192; 可分解评估 &#x2192; Git 检测</text>
+  <!-- ═══════ Checkpoint Bar ═══════ -->
+  <rect x="70" y="950" width="1060" height="30" rx="8" fill="#1a1a2e" stroke="#333" stroke-width="1"/>
+  <text x="600" y="970" text-anchor="middle" fill="#777" font-size="12">&#x26a1; 7-Point Checkpoint:  Scope &#x2192; Memory &#x2192; Notify &#x2192; Status &#x2192; Skill &#x2192; Decompose &#x2192; Git Guard  &#x00a0;|&#x00a0; Violation &#x2192; auto-restart</text>
+
+  <!-- ═══════ Footer ═══════ -->
+  <text x="600" y="997" text-anchor="middle" fill="#444" font-size="10">Powered by Claude Code Agent Teams  &#x00b7;  github.com/Xinjing-Guo/Agent-Teams-Coder  &#x00b7;  MIT License</text>
 </svg>
