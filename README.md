@@ -8,7 +8,7 @@
 
 ## Installation
 
-### One-Command Install (Recommended)
+### Option A: Claude Code Plugin (Recommended)
 
 ```bash
 # Step 1: Add the marketplace
@@ -18,31 +18,54 @@ claude plugin marketplace add Xinjing-Guo/Agent-Teams-Coder --sparse .claude-plu
 claude plugin install agent-teams-coder
 ```
 
-### Usage
+Then in any Claude Code session:
 
 ```bash
-# In any Claude Code session, just type:
 /agent-team Write a high-performance FFT library in Python and C
 ```
 
-That's it. Marshall (Leader) will automatically orchestrate all 6 agents through the full 7-phase workflow.
+`/agent-team` auto-detects tmux:
 
-### Other Installation Methods
+- **tmux available** → asks you: multi-window (7 visible panes) or single-window (automated)
+- **tmux not available** → runs in single-window mode automatically
+
+### Option B: tmux Multi-Pane (No Plugin Needed)
 
 ```bash
-# Install from local clone
 git clone https://github.com/Xinjing-Guo/Agent-Teams-Coder.git
-claude plugin add ./Agent-Teams-Coder/plugin/agent-teams-coder
-
-# Or use tmux multi-pane mode (no plugin needed)
 cd Agent-Teams-Coder
-./panel.sh    # Select a) for full team
+./panel.sh
 ```
 
-### Management
+Choose a launch preset:
+
+| Option                    | Agents                              | Use Case                  |
+| ------------------------- | ----------------------------------- | ------------------------- |
+| a) Full team              | All 7                               | Complete workflow         |
+| b) Core dev               | Marshall + Euler + Forge + Sentinel | Algorithm → Code → Test   |
+| c) Leader only            | Marshall                            | Planning and coordination |
+| d) Algorithm + Dev        | Euler + Forge                       | Focused implementation    |
+| e) Test + Analysis + Docs | Sentinel + Lens + Atlas             | Post-development pipeline |
+
+Each agent supports model selection:
 
 ```bash
-claude plugin list                          # See installed plugins
+./start-euler.sh           # Default: Sonnet
+./start-euler.sh opus      # Opus for complex algorithm design
+./start-chronicle.sh haiku # Haiku for logging (cost-efficient)
+```
+
+### Option C: Local Plugin Install
+
+```bash
+git clone https://github.com/Xinjing-Guo/Agent-Teams-Coder.git
+claude plugin add ./Agent-Teams-Coder/plugin/agent-teams-coder
+```
+
+### Plugin Management
+
+```bash
+claude plugin list                          # List installed plugins
 claude plugin enable agent-teams-coder      # Enable
 claude plugin disable agent-teams-coder     # Disable
 claude plugin uninstall agent-teams-coder   # Uninstall
@@ -52,15 +75,15 @@ claude plugin uninstall agent-teams-coder   # Uninstall
 
 ## Team Members
 
-| Codename      | Role                   | Key Skills                                                       |
-| ------------- | ---------------------- | ---------------------------------------------------------------- |
-| **Marshall**  | Leader                 | Task decomposition, assignment, memory approval, delivery        |
-| **Euler**     | Algorithm Designer     | Algorithm design, mathematical modeling, complexity analysis     |
-| **Forge**     | Code Developer         | Python, C, C++, R, Julia, Shell — strict coding standards        |
-| **Sentinel**  | Code Tester            | pytest, GTest, valgrind, coverage analysis, bug tracking         |
-| **Lens**      | Code Analyst           | Architecture analysis, function-level & line-by-line explanation |
-| **Atlas**     | Documentation Engineer | Software manual (intro, usage, examples, code explanation)       |
-| **Chronicle** | Log Recorder           | Activity logging, session summaries, update reports              |
+| Codename      | Role                   | Skills (32 total)                                                                                                        |
+| ------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Marshall**  | Leader                 | task-decomposition, risk-assessment, progress-tracking, team-coordination                                                |
+| **Euler**     | Algorithm Designer     | algorithm-design, complexity-analysis, numerical-methods, optimization-algorithms, data-structures, statistical-modeling |
+| **Forge**     | Code Developer         | multi-language-coding, code-review-checklist, python-expert, c-cpp-expert, r-julia-expert, build-and-packaging           |
+| **Sentinel**  | Code Tester            | test-strategy, bug-tracking, python-testing, c-cpp-testing, performance-testing                                          |
+| **Lens**      | Code Analyst           | code-analysis-framework, static-analysis, design-pattern-recognition, call-graph-generation                              |
+| **Atlas**     | Documentation Engineer | manual-structure, api-documentation, tutorial-writing, diagram-generation                                                |
+| **Chronicle** | Log Recorder           | activity-logging, changelog-generation, decision-log                                                                     |
 
 ## Standard Workflow
 
@@ -69,6 +92,7 @@ Phase 1: Requirements   → Marshall decomposes requirements, Chronicle starts l
 Phase 2: Algorithm       → Euler designs algorithm, aligns with Forge
 Phase 3: Development     → Forge implements code based on Euler's algorithm
 Phase 4: Testing         → Sentinel tests rigorously, broadcasts test report
+                            ↻ Bug found → Forge fixes → Sentinel retests (max 3 rounds)
 Phase 5: Analysis        → Lens analyzes code structure, line-by-line explanation
 Phase 6: Documentation   → Atlas integrates manual (test cases + code analysis)
 Phase 7: Delivery        → Marshall consolidates, Chronicle generates summary
@@ -115,6 +139,8 @@ Violation triggers auto-correction: stop → restart from step 1.
 
 ### 3. Real-Time Team Status (`status.json`)
 
+All agents read/write a shared status file so every member knows who is doing what:
+
 ```bash
 # Member updates their own status
 bash scripts/update-status.sh forge working "Implementing sort algorithm"
@@ -126,19 +152,97 @@ bash scripts/update-phase.sh 3 "Sort library development"
 
 Status values: `idle` | `working` | `blocked` | `waiting` | `done`
 
-### 4. Skill System
+### 4. Skill System (32 Skills)
 
-Each agent has exclusive skill files in their `skills/` directory with standardized workflows, templates, and checklists.
+Each agent has a `skills/` directory containing specialized knowledge packages — method selection guides, code templates, checklists, and tool references. Skills are checked at checkpoint step 5 and used when applicable.
 
-| Agent     | Skills                                                 |
-| --------- | ------------------------------------------------------ |
-| Marshall  | `task-decomposition.md`                                |
-| Euler     | `algorithm-design.md`, `complexity-analysis.md`        |
-| Forge     | `multi-language-coding.md`, `code-review-checklist.md` |
-| Sentinel  | `test-strategy.md`, `bug-tracking.md`                  |
-| Lens      | `code-analysis-framework.md`                           |
-| Atlas     | `manual-structure.md`                                  |
-| Chronicle | `activity-logging.md`                                  |
+<details>
+<summary><b>Marshall — 4 Skills</b></summary>
+
+| Skill                   | Purpose                                                          |
+| ----------------------- | ---------------------------------------------------------------- |
+| `task-decomposition.md` | Requirement classification, dependency analysis, task matrix     |
+| `risk-assessment.md`    | Risk matrix, technical/process risks, mitigation strategies      |
+| `progress-tracking.md`  | Phase status board, blocker resolution, milestone checks         |
+| `team-coordination.md`  | Euler↔Forge alignment, bug loop limits (max 3), escalation rules |
+
+</details>
+
+<details>
+<summary><b>Euler — 6 Skills</b></summary>
+
+| Skill                        | Purpose                                                                    |
+| ---------------------------- | -------------------------------------------------------------------------- |
+| `algorithm-design.md`        | Problem modeling → candidates → selection → pseudocode → boundary analysis |
+| `complexity-analysis.md`     | Big-O derivation framework, best/avg/worst, practical performance notes    |
+| `numerical-methods.md`       | Root finding, interpolation, ODE/PDE, FFT, stability checklist             |
+| `optimization-algorithms.md` | Decision tree: differentiable? convex? discrete? → method selection        |
+| `data-structures.md`         | Selection guide by access pattern, language-specific implementations       |
+| `statistical-modeling.md`    | Hypothesis testing, distributions, Monte Carlo, sample size estimation     |
+
+</details>
+
+<details>
+<summary><b>Forge — 6 Skills</b></summary>
+
+| Skill                      | Purpose                                                                     |
+| -------------------------- | --------------------------------------------------------------------------- |
+| `multi-language-coding.md` | Language selection guide, coding checklist, multi-language templates        |
+| `code-review-checklist.md` | Correctness, robustness, readability, performance, security checks          |
+| `python-expert.md`         | Type hints, patterns (context managers, dataclasses), logging, libraries    |
+| `c-cpp-expert.md`          | Memory safety, RAII, smart pointers, CMake, valgrind, sanitizers            |
+| `r-julia-expert.md`        | Tidyverse/vectorized R, multiple dispatch/type-stable Julia, key packages   |
+| `build-and-packaging.md`   | pyproject.toml, CMake, Makefile, R/Julia package structure, deps management |
+
+</details>
+
+<details>
+<summary><b>Sentinel — 5 Skills</b></summary>
+
+| Skill                    | Purpose                                                                    |
+| ------------------------ | -------------------------------------------------------------------------- |
+| `test-strategy.md`       | Test pyramid (60/30/10), equivalence class, boundary value, error guessing |
+| `bug-tracking.md`        | Bug lifecycle, report template, severity definitions                       |
+| `python-testing.md`      | pytest essentials: parametrize, fixtures, mocking, coverage, benchmarks    |
+| `c-cpp-testing.md`       | GTest, CUnit, valgrind, AddressSanitizer, UBSan, CMake integration         |
+| `performance-testing.md` | Benchmarking methodology, profiling tools, scaling analysis, red flags     |
+
+</details>
+
+<details>
+<summary><b>Lens — 4 Skills</b></summary>
+
+| Skill                           | Purpose                                                                      |
+| ------------------------------- | ---------------------------------------------------------------------------- |
+| `code-analysis-framework.md`    | 4-layer analysis: architecture → modules → functions → lines                 |
+| `static-analysis.md`            | Linters/formatters by language, cyclomatic/cognitive complexity, code smells |
+| `design-pattern-recognition.md` | Creational/structural/behavioral patterns + anti-pattern identification      |
+| `call-graph-generation.md`      | Mermaid + ASCII formats, dependency graphs, data flow diagrams               |
+
+</details>
+
+<details>
+<summary><b>Atlas — 4 Skills</b></summary>
+
+| Skill                   | Purpose                                                                      |
+| ----------------------- | ---------------------------------------------------------------------------- |
+| `manual-structure.md`   | 4-chapter checklist matrix, writing principles per chapter, quality checks   |
+| `api-documentation.md`  | Function/CLI/module doc templates with params, returns, examples, exceptions |
+| `tutorial-writing.md`   | Step-by-step guide structure, writing rules, quick-start template            |
+| `diagram-generation.md` | Mermaid (flowchart/sequence/class/state) + ASCII diagrams, when-to-use guide |
+
+</details>
+
+<details>
+<summary><b>Chronicle — 3 Skills</b></summary>
+
+| Skill                     | Purpose                                                                     |
+| ------------------------- | --------------------------------------------------------------------------- |
+| `activity-logging.md`     | What to record/skip, log file naming, update summary triggers, distribution |
+| `changelog-generation.md` | Keep a Changelog format, semantic versioning, auto-generation process       |
+| `decision-log.md`         | ADR (Architecture Decision Record) format, what qualifies, decision index   |
+
+</details>
 
 ### 5. Notification System
 
@@ -151,121 +255,150 @@ bash scripts/notify.sh euler forge "Algorithm ready" "Sorting algorithm design c
 # Broadcast to all
 bash scripts/notify.sh marshall all "Phase update" "Entering testing phase"
 
-# Check notifications (mtime-cached)
+# Check notifications (mtime-cached — skips file read if no changes)
 bash scripts/check-notify.sh forge
 ```
 
-### 6. Model Selection per Agent
+### 6. tmux Integration
 
-```bash
-./start-euler.sh           # Default: Sonnet
-./start-euler.sh opus      # Opus for complex algorithm design
-./start-chronicle.sh haiku # Haiku for logging (cost-efficient)
+`/agent-team` auto-detects tmux and offers two modes:
+
+| Mode              | When                         | What Happens                                      |
+| ----------------- | ---------------------------- | ------------------------------------------------- |
+| **Multi-window**  | tmux available, user chooses | Creates 7 labeled tmux panes, one per agent       |
+| **Single-window** | no tmux, or user prefers     | Marshall orchestrates via subagents in background |
+
+tmux pane layout:
+
 ```
+┌──────────────────┬──────────────────┐
+│ Marshall (Leader) │ Euler (Algorithm) │
+├──────────────────┼──────────────────┤
+│ Forge (Code)     │ Sentinel (Test)   │
+├──────────────────┼──────────────────┤
+│ Lens (Analysis)  │ Atlas (Docs)      │
+├──────────────────┤ Chronicle (Log)   │
+└──────────────────┴──────────────────┘
+```
+
+tmux shortcuts:
+
+- `Ctrl+B` then arrow keys — switch panes
+- `Ctrl+B` then `z` — zoom/unzoom current pane
+- `Ctrl+B` then `d` — detach (`tmux attach -t agent-team` to resume)
+
+---
 
 ## Prerequisites
 
 - Claude Code v2.1.32+ (`claude --version`)
-- Enable Agent Teams:
+- Enable Agent Teams (for tmux multi-instance mode):
   ```json
   { "env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" } }
   ```
-- tmux (optional, for `panel.sh` multi-pane launch)
+- tmux (optional, for multi-pane mode): `brew install tmux`
 
-## Quick Start
-
-### Option 1: Launch individual agents
-
-```bash
-./start-leader.sh      # Marshall (Leader)
-./start-euler.sh       # Euler (Algorithm Designer)
-./start-forge.sh       # Forge (Developer)
-./start-sentinel.sh    # Sentinel (Tester)
-./start-lens.sh        # Lens (Analyst)
-./start-atlas.sh       # Atlas (Documentation)
-./start-chronicle.sh   # Chronicle (Logger)
-```
-
-### Option 2: tmux multi-pane panel
-
-```bash
-./panel.sh
-# Options:
-#   a) Full team — all 7 agents
-#   b) Core dev — Marshall + Euler + Forge + Sentinel
-#   c) Leader only
-#   d) Algorithm + Dev — Euler + Forge
-#   e) Test + Analysis + Docs — Sentinel + Lens + Atlas
-```
-
-### Option 3: Launch from Marshall via Agent Teams
-
-In Marshall's Claude Code session:
+## Plugin Structure
 
 ```
-Create a team:
-- Euler: Algorithm design, working directory ../euler
-- Forge: Code development, working directory ../forge
-- Sentinel: Code testing, working directory ../sentinel
-- Lens: Code analysis, working directory ../lens
-- Atlas: Documentation, working directory ../atlas
-- Chronicle: Activity logging, working directory ../chronicle
-
-Then decompose and assign: [your requirements]
+plugin/agent-teams-coder/
+├── .claude-plugin/
+│   └── plugin.json                    # Plugin manifest
+├── commands/
+│   └── agent-team.md                  # /agent-team slash command
+├── agents/                            # 6 subagent definitions
+│   ├── euler.md                       #   Algorithm Designer
+│   ├── forge.md                       #   Code Developer
+│   ├── sentinel.md                    #   Code Tester
+│   ├── lens.md                        #   Code Analyst
+│   ├── atlas.md                       #   Documentation Engineer
+│   └── chronicle.md                   #   Log Recorder
+├── skills/                            # 3 shared knowledge packages
+│   ├── shared-memory-protocol/        #   Memory governance rules
+│   │   └── SKILL.md
+│   ├── seven-point-checkpoint/        #   Mandatory pre-task checklist
+│   │   └── SKILL.md
+│   └── task-workflow/                 #   7-phase pipeline definition
+│       └── SKILL.md
+└── scripts/
+    └── launch-team.sh                 #   tmux auto-detection + launcher
 ```
 
 ## Project Structure
 
 ```
-agent_team/
+Agent-Teams-Coder/
+├── .claude-plugin/
+│   └── marketplace.json               # Marketplace registration
 ├── CLAUDE.md                          # Project-level instructions (shared)
 ├── README.md
-├── .gitignore
 │
-├── leader/                            # Marshall
-│   ├── CLAUDE.md                      #   Behavior instructions
-│   ├── PERSONA.md                     #   Personality definition
-│   └── skills/                        #   Exclusive skills
-│       └── task-decomposition.md
+├── leader/                            # Marshall (4 skills)
+│   ├── CLAUDE.md
+│   ├── PERSONA.md
+│   └── skills/
+│       ├── task-decomposition.md
+│       ├── risk-assessment.md
+│       ├── progress-tracking.md
+│       └── team-coordination.md
 │
-├── euler/                             # Euler
+├── euler/                             # Euler (6 skills)
 │   ├── CLAUDE.md
 │   ├── PERSONA.md
 │   └── skills/
 │       ├── algorithm-design.md
-│       └── complexity-analysis.md
+│       ├── complexity-analysis.md
+│       ├── numerical-methods.md
+│       ├── optimization-algorithms.md
+│       ├── data-structures.md
+│       └── statistical-modeling.md
 │
-├── forge/                             # Forge
+├── forge/                             # Forge (6 skills)
 │   ├── CLAUDE.md
 │   ├── PERSONA.md
 │   └── skills/
 │       ├── multi-language-coding.md
-│       └── code-review-checklist.md
+│       ├── code-review-checklist.md
+│       ├── python-expert.md
+│       ├── c-cpp-expert.md
+│       ├── r-julia-expert.md
+│       └── build-and-packaging.md
 │
-├── sentinel/                          # Sentinel
+├── sentinel/                          # Sentinel (5 skills)
 │   ├── CLAUDE.md
 │   ├── PERSONA.md
 │   └── skills/
 │       ├── test-strategy.md
-│       └── bug-tracking.md
+│       ├── bug-tracking.md
+│       ├── python-testing.md
+│       ├── c-cpp-testing.md
+│       └── performance-testing.md
 │
-├── lens/                              # Lens
+├── lens/                              # Lens (4 skills)
 │   ├── CLAUDE.md
 │   ├── PERSONA.md
 │   └── skills/
-│       └── code-analysis-framework.md
+│       ├── code-analysis-framework.md
+│       ├── static-analysis.md
+│       ├── design-pattern-recognition.md
+│       └── call-graph-generation.md
 │
-├── atlas/                             # Atlas
+├── atlas/                             # Atlas (4 skills)
 │   ├── CLAUDE.md
 │   ├── PERSONA.md
 │   └── skills/
-│       └── manual-structure.md
+│       ├── manual-structure.md
+│       ├── api-documentation.md
+│       ├── tutorial-writing.md
+│       └── diagram-generation.md
 │
-├── chronicle/                         # Chronicle
+├── chronicle/                         # Chronicle (3 skills)
 │   ├── CLAUDE.md
 │   ├── PERSONA.md
 │   └── skills/
-│       └── activity-logging.md
+│       ├── activity-logging.md
+│       ├── changelog-generation.md
+│       └── decision-log.md
 │
 ├── shared/                            # Shared workspace
 │   ├── memory/
@@ -289,9 +422,10 @@ agent_team/
 │   ├── update-status.sh               #   Update member status
 │   └── update-phase.sh                #   Update workflow phase
 │
+├── plugin/agent-teams-coder/          #   Claude Code plugin (see above)
 ├── panel.sh                           #   tmux multi-pane launcher
 ├── start-leader.sh                    #   Individual agent launchers
-├── start-euler.sh                     #     (all support model selection)
+├── start-euler.sh                     #     (all support: ./start-X.sh [opus|haiku])
 ├── start-forge.sh
 ├── start-sentinel.sh
 ├── start-lens.sh
@@ -305,10 +439,10 @@ agent_team/
 | ---------------- | ---------------------------------------------------------------------------------------------------------------- |
 | Euler ↔ Forge    | Algorithm → Code: Euler provides algorithm + pseudocode, Forge implements and feeds back engineering constraints |
 | Forge → Sentinel | Code → Test: Forge notifies Sentinel when code is ready                                                          |
-| Sentinel → Forge | Bug → Fix: Sentinel reports bugs, Forge fixes, regression test loop                                              |
+| Sentinel → Forge | Bug → Fix: Sentinel reports bugs, Forge fixes, regression test loop (max 3 rounds)                               |
 | Lens → Atlas     | Analysis → Docs: Lens provides line-by-line code explanation for Atlas                                           |
 | Sentinel → Atlas | Tests → Docs: Sentinel provides test cases, Atlas converts to usage examples                                     |
-| Chronicle ← All  | Logging: Chronicle monitors all member activities                                                                |
+| Chronicle ← All  | Logging: Chronicle monitors all member activities and generates decision logs                                    |
 
 ### Atlas Manual — Four Chapters
 
