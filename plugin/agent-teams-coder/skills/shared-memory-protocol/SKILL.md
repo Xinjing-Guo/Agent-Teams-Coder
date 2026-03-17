@@ -1,7 +1,7 @@
 ---
 name: Shared Memory Protocol
 description: Use when team agents need to read, write, or manage shared team knowledge (architecture decisions, API conventions, coding standards). Provides the approval-based governance model for shared memory.
-version: 1.0.0
+version: 1.0.1
 ---
 
 # Shared Memory Protocol

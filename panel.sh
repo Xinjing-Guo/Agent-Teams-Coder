@@ -22,6 +22,32 @@
 SESSION="agent-team"
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
+# ─── 向指定窗格发送初始化 prompt ───
+# 参数: $1=tmux_target (如 "$SESSION:0.0"), $2=agent_name
+# panel.sh 无需求参数，仅发送初始化指令
+send_init_prompt() {
+    local target="$1"
+    local agent_name="$2"
+    if [ "$agent_name" = "marshall" ]; then
+        tmux send-keys -t "$target" "请执行七步检查点初始化（读取 PERSONA.md -> 共享记忆 -> 检查通知 -> 更新状态 -> 检查 Skills -> 评估任务）。初始化完成后，等待用户输入需求。" C-m
+    else
+        tmux send-keys -t "$target" "请执行七步检查点初始化（读取 PERSONA.md -> 共享记忆 -> 检查通知 -> 更新状态 -> 检查 Skills -> 评估任务），然后等待 Marshall 的任务分配通知。执行: bash ../scripts/check-notify.sh ${agent_name}" C-m
+    fi
+}
+
+# ─── 批量发送初始 prompt ───
+# 参数: 成对的 "pane_index agent_name" 列表
+# 示例: send_all_init_prompts "0 marshall" "1 euler" "2 forge"
+send_all_init_prompts() {
+    sleep 4
+    for pair in "$@"; do
+        local pane_idx="${pair%% *}"
+        local agent_name="${pair#* }"
+        send_init_prompt "${SESSION}:0.${pane_idx}" "$agent_name"
+        sleep 1
+    done
+}
+
 # 检查 tmux
 if ! command -v tmux &>/dev/null; then
     echo "❌ 需要安装 tmux"
@@ -93,6 +119,12 @@ case $selection in
         tmux send-keys -t "$SESSION" "claude -c 2>/dev/null || claude" C-m
 
         tmux select-pane -t "$SESSION:0.0"
+
+        # 发送初始化 prompt（后台执行，不阻塞 attach）
+        send_all_init_prompts \
+            "0 marshall" "1 euler" "2 sentinel" "3 atlas" \
+            "4 forge" "5 lens" "6 chronicle" &
+
         tmux attach-session -t "$SESSION"
         ;;
     b|B)
@@ -111,11 +143,20 @@ case $selection in
         tmux send-keys -t "$SESSION" "claude -c 2>/dev/null || claude" C-m
 
         tmux select-pane -t "$SESSION:0.0"
+
+        # 发送初始化 prompt（后台执行）
+        send_all_init_prompts \
+            "0 marshall" "1 euler" "2 forge" "3 sentinel" &
+
         tmux attach-session -t "$SESSION"
         ;;
     c|C)
         tmux new-session -d -s "$SESSION" -c "$DIR/leader" -n "Agent Team"
         tmux send-keys -t "$SESSION" "claude -c 2>/dev/null || claude" C-m
+
+        # 发送初始化 prompt（后台执行）
+        send_all_init_prompts "0 marshall" &
+
         tmux attach-session -t "$SESSION"
         ;;
     d|D)
@@ -125,6 +166,9 @@ case $selection in
 
         tmux split-window -h -t "$SESSION" -c "$DIR/forge"
         tmux send-keys -t "$SESSION" "claude -c 2>/dev/null || claude" C-m
+
+        # 发送初始化 prompt（后台执行）
+        send_all_init_prompts "0 euler" "1 forge" &
 
         tmux attach-session -t "$SESSION"
         ;;
@@ -140,6 +184,10 @@ case $selection in
         tmux send-keys -t "$SESSION" "claude -c 2>/dev/null || claude" C-m
 
         tmux select-pane -t "$SESSION:0.0"
+
+        # 发送初始化 prompt（后台执行）
+        send_all_init_prompts "0 sentinel" "1 lens" "2 atlas" &
+
         tmux attach-session -t "$SESSION"
         ;;
     *)
