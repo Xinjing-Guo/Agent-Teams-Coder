@@ -6,6 +6,50 @@
   <img src="docs/architecture.svg" alt="Agent Teams Coder Architecture" width="100%"/>
 </p>
 
+## Installation
+
+### One-Command Install (Recommended)
+
+```bash
+# Step 1: Add the marketplace
+claude plugin marketplace add Xinjing-Guo/Agent-Teams-Coder --sparse .claude-plugin plugin
+
+# Step 2: Install the plugin
+claude plugin install agent-teams-coder
+```
+
+### Usage
+
+```bash
+# In any Claude Code session, just type:
+/agent-team Write a high-performance FFT library in Python and C
+```
+
+That's it. Marshall (Leader) will automatically orchestrate all 6 agents through the full 7-phase workflow.
+
+### Other Installation Methods
+
+```bash
+# Install from local clone
+git clone https://github.com/Xinjing-Guo/Agent-Teams-Coder.git
+claude plugin add ./Agent-Teams-Coder/plugin/agent-teams-coder
+
+# Or use tmux multi-pane mode (no plugin needed)
+cd Agent-Teams-Coder
+./panel.sh    # Select a) for full team
+```
+
+### Management
+
+```bash
+claude plugin list                          # See installed plugins
+claude plugin enable agent-teams-coder      # Enable
+claude plugin disable agent-teams-coder     # Disable
+claude plugin uninstall agent-teams-coder   # Uninstall
+```
+
+---
+
 ## Team Members
 
 | Codename      | Role                   | Key Skills                                                       |

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "agent-teams-coder",
+  "description": "Multi-agent software development team — 7 AI agents collaborate through shared memory governance",
+  "owner": {
+    "name": "Xinjing Guo",
+    "email": "xinjing.guo@example.com"
+  },
+  "plugins": [
+    {
+      "name": "agent-teams-coder",
+      "description": "7-agent dev team (algorithm, coding, testing, analysis, docs, logging) with shared memory approval, 7-point checkpoint, and /agent-team slash command",
+      "version": "1.0.0",
+      "author": {
+        "name": "Xinjing Guo",
+        "url": "https://github.com/Xinjing-Guo"
+      },
+      "source": "./plugin/agent-teams-coder",
+      "category": "development",
+      "tags": ["multi-agent", "team", "collaboration", "coding", "testing", "documentation", "algorithm"],
+      "homepage": "https://github.com/Xinjing-Guo/Agent-Teams-Coder",
+      "repository": "https://github.com/Xinjing-Guo/Agent-Teams-Coder"
+    }
+  ]
+}
