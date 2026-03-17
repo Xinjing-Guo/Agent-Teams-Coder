@@ -164,21 +164,25 @@
   <text x="1060" y="253" text-anchor="middle" fill="#004" font-size="14">Log Recorder</text>
   <text x="1060" y="275" text-anchor="middle" fill="#005" font-size="11">skill: activity-logging</text>
 
-  <text x="1060" y="315" text-anchor="middle" fill="#4facfe" font-size="14" font-weight="600">&#x1f4e1; Monitors All</text>
+  <text x="1060" y="315" text-anchor="middle" fill="#4facfe" font-size="14" font-weight="600">&#x1f4e8; Receives CC from All</text>
   <g opacity="0.7" font-size="13" fill="#70c0ff">
-    <text x="1060" y="340" text-anchor="middle">&#x25cf; Marshall tasks</text>
-    <text x="1060" y="362" text-anchor="middle">&#x25cf; Euler algorithms</text>
-    <text x="1060" y="384" text-anchor="middle">&#x25cf; Forge code</text>
-    <text x="1060" y="406" text-anchor="middle">&#x25cf; Sentinel tests</text>
-    <text x="1060" y="428" text-anchor="middle">&#x25cf; Lens analysis</text>
-    <text x="1060" y="450" text-anchor="middle">&#x25cf; Atlas docs</text>
+    <text x="1060" y="340" text-anchor="middle">&#x25c0; Marshall tasks</text>
+    <text x="1060" y="362" text-anchor="middle">&#x25c0; Euler algorithms</text>
+    <text x="1060" y="384" text-anchor="middle">&#x25c0; Forge code</text>
+    <text x="1060" y="406" text-anchor="middle">&#x25c0; Sentinel tests</text>
+    <text x="1060" y="428" text-anchor="middle">&#x25c0; Lens analysis</text>
+    <text x="1060" y="450" text-anchor="middle">&#x25c0; Atlas docs</text>
   </g>
-  <text x="1060" y="480" text-anchor="middle" fill="#4facfe" font-size="12">&#x1f4cb; Generates update summaries</text>
+  <text x="1060" y="475" text-anchor="middle" fill="#ff9800" font-size="11" font-weight="600">Step 8: All members must CC</text>
+  <text x="1060" y="495" text-anchor="middle" fill="#4facfe" font-size="12">&#x1f4cb; Generates update summaries</text>
 
-  <!-- Chronicle monitor lines -->
-  <line x1="950" y1="240" x2="800" y2="230" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4,4" opacity="0.25"/>
-  <line x1="950" y1="380" x2="910" y2="390" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4,4" opacity="0.25"/>
-  <line x1="950" y1="450" x2="800" y2="570" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4,4" opacity="0.25"/>
+  <!-- Chronicle CC lines (arrows point TO Chronicle from each agent) -->
+  <line x1="850" y1="230" x2="950" y2="240" stroke="#00f2fe" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrowWhite)" opacity="0.4"/>
+  <line x1="295" y1="370" x2="950" y2="340" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4,4" marker-end="url(#arrowWhite)" opacity="0.25"/>
+  <line x1="630" y1="370" x2="950" y2="380" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4,4" marker-end="url(#arrowWhite)" opacity="0.25"/>
+  <line x1="920" y1="390" x2="950" y2="400" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4,4" marker-end="url(#arrowWhite)" opacity="0.25"/>
+  <line x1="470" y1="550" x2="950" y2="430" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4,4" marker-end="url(#arrowWhite)" opacity="0.25"/>
+  <line x1="800" y1="555" x2="950" y2="450" stroke="#00f2fe" stroke-width="1" stroke-dasharray="4,4" marker-end="url(#arrowWhite)" opacity="0.25"/>
 
   <!-- ═══════ SHARED MEMORY MECHANISM (key section) ═══════ -->
   <rect x="70" y="660" width="1060" height="175" rx="16" fill="url(#memoryGrad)" filter="url(#shadow)" opacity="0.9" stroke="#3498db" stroke-width="1.5"/>
@@ -220,7 +224,7 @@
 
   <!-- ═══════ Workflow Pipeline ═══════ -->
   <rect x="70" y="865" width="1060" height="65" rx="12" fill="#151525" stroke="#333" stroke-width="1"/>
-  <text x="600" y="888" text-anchor="middle" fill="#bbb" font-size="14" font-weight="600">&#x1f504; Standard Workflow &#x2014; 7 Phases</text>
+  <text x="600" y="888" text-anchor="middle" fill="#bbb" font-size="14" font-weight="600">&#x1f504; Standard Workflow &#x2014; 7 Phases (with Chronicle CC at each phase)</text>
 
   <g font-size="12" font-weight="500">
     <circle cx="120" cy="912" r="8" fill="#ffd200"/>
@@ -264,7 +268,7 @@
 
   <!-- ═══════ Checkpoint Bar ═══════ -->
   <rect x="70" y="950" width="1060" height="30" rx="8" fill="#1a1a2e" stroke="#333" stroke-width="1"/>
-  <text x="600" y="970" text-anchor="middle" fill="#777" font-size="12">&#x26a1; 7-Point Checkpoint:  Scope &#x2192; Memory &#x2192; Notify &#x2192; Status &#x2192; Skill &#x2192; Decompose &#x2192; Git Guard  &#x00a0;|&#x00a0; Violation &#x2192; auto-restart</text>
+  <text x="600" y="970" text-anchor="middle" fill="#777" font-size="12">&#x26a1; 8-Point Checkpoint:  Scope &#x2192; Memory &#x2192; Notify &#x2192; Status &#x2192; Skill &#x2192; Decompose &#x2192; Git Guard &#x2192; CC Chronicle  &#x00a0;|&#x00a0; Violation &#x2192; auto-restart</text>
 
   <!-- ═══════ Footer ═══════ -->
   <text x="600" y="997" text-anchor="middle" fill="#444" font-size="10">Powered by Claude Code Agent Teams  &#x00b7;  github.com/Xinjing-Guo/Agent-Teams-Coder  &#x00b7;  MIT License</text>

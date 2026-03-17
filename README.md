@@ -89,13 +89,13 @@ claude plugin uninstall agent-teams-coder   # Uninstall
 
 ```
 Phase 1: Requirements   → Marshall decomposes requirements, Chronicle starts logging
-Phase 2: Algorithm       → Euler designs algorithm, aligns with Forge
-Phase 3: Development     → Forge implements code based on Euler's algorithm
-Phase 4: Testing         → Sentinel tests rigorously, broadcasts test report
-                            ↻ Bug found → Forge fixes → Sentinel retests (max 3 rounds)
-Phase 5: Analysis        → Lens analyzes code structure, line-by-line explanation
-Phase 6: Documentation   → Atlas integrates manual (test cases + code analysis)
-Phase 7: Delivery        → Marshall consolidates, Chronicle generates summary
+Phase 2: Algorithm       → Euler designs algorithm, aligns with Forge          → CC Chronicle
+Phase 3: Development     → Forge implements code based on Euler's algorithm    → CC Chronicle
+Phase 4: Testing         → Sentinel tests rigorously, broadcasts test report   → CC Chronicle
+                            ↻ Bug found → Forge fixes → CC Chronicle → Sentinel retests
+Phase 5: Analysis        → Lens analyzes code structure, line-by-line          → CC Chronicle
+Phase 6: Documentation   → Atlas integrates manual (test cases + code analysis)→ CC Chronicle
+Phase 7: Delivery        → Marshall consolidates, Chronicle generates summary  → CC Chronicle
 ```
 
 ## Core Mechanisms
@@ -121,23 +121,42 @@ bash scripts/memory-approve.sh req_20260317120000_42
 bash scripts/memory-reject.sh req_20260317120000_42 "Conflicts with existing decision"
 ```
 
-### 2. Seven-Point Mandatory Checkpoint
+### 2. Eight-Point Mandatory Checkpoint
 
-Every agent must complete these 7 steps **before executing any task**:
+Every agent must complete these 8 steps **before and after executing any task**:
 
-| Step | Check                    | Purpose                                     |
-| ---- | ------------------------ | ------------------------------------------- |
-| 1    | Task scope confirmation  | Prevent overreach or misunderstanding       |
-| 2    | Shared memory read       | Ensure compliance with team conventions     |
-| 3    | Smart notification check | Don't miss teammate messages (mtime-cached) |
-| 4    | Team status sync         | Read current phase, update own status       |
-| 5    | Skill applicability      | Use specialized skill if available          |
-| 6    | Task decomposability     | Split if >= 3 steps or multi-file           |
-| 7    | Git operation detection  | Require explicit user authorization         |
+| Step | Check                    | Purpose                                                |
+| ---- | ------------------------ | ------------------------------------------------------ |
+| 1    | Task scope confirmation  | Prevent overreach or misunderstanding                  |
+| 2    | Shared memory read       | Ensure compliance with team conventions                |
+| 3    | Smart notification check | Don't miss teammate messages (mtime-cached)            |
+| 4    | Team status sync         | Read current phase, update own status                  |
+| 5    | Skill applicability      | Use specialized skill if available                     |
+| 6    | Task decomposability     | Split if >= 3 steps or multi-file                      |
+| 7    | Git operation detection  | Require explicit user authorization                    |
+| 8    | **CC Chronicle**         | **Notify Chronicle with output summary on completion** |
 
 Violation triggers auto-correction: stop → restart from step 1.
 
-### 3. Real-Time Team Status (`status.json`)
+### 3. Chronicle CC Protocol
+
+Chronicle is the team's memory but **cannot passively listen** — every member must actively notify Chronicle upon task completion:
+
+```bash
+# Standard CC format
+bash scripts/notify.sh <your_name> chronicle "<task summary>" "<what you did, output files, key data>"
+```
+
+| Phase | Who CCs Chronicle | Content                                           |
+| ----- | ----------------- | ------------------------------------------------- |
+| 2     | Euler             | Algorithm design summary, complexity analysis     |
+| 3     | Forge             | Code files, language, lines, implementation notes |
+| 4     | Sentinel          | Test case count, pass rate, bug list              |
+| 5     | Lens              | Analysis scope, issues found, assessment          |
+| 6     | Atlas             | Document chapters, page count, coverage           |
+| 7     | Marshall          | Final deliverables list, overall summary          |
+
+### 4. Real-Time Team Status (`status.json`)
 
 All agents read/write a shared status file so every member knows who is doing what:
 
@@ -152,7 +171,7 @@ bash scripts/update-phase.sh 3 "Sort library development"
 
 Status values: `idle` | `working` | `blocked` | `waiting` | `done`
 
-### 4. Skill System (32 Skills)
+### 5. Skill System (32 Skills)
 
 Each agent has a `skills/` directory containing specialized knowledge packages — method selection guides, code templates, checklists, and tool references. Skills are checked at checkpoint step 5 and used when applicable.
 
@@ -244,7 +263,7 @@ Each agent has a `skills/` directory containing specialized knowledge packages �
 
 </details>
 
-### 5. Notification System
+### 6. Notification System
 
 File-based async notifications with mtime caching (97% token savings when no changes):
 
@@ -259,7 +278,7 @@ bash scripts/notify.sh marshall all "Phase update" "Entering testing phase"
 bash scripts/check-notify.sh forge
 ```
 
-### 6. tmux Integration
+### 7. tmux Integration
 
 `/agent-team` auto-detects tmux and offers two modes:
 
@@ -306,7 +325,8 @@ plugin/agent-teams-coder/
 │   └── plugin.json                    # Plugin manifest
 ├── commands/
 │   └── agent-team.md                  # /agent-team slash command
-├── agents/                            # 6 subagent definitions
+├── agents/                            # 7 subagent definitions
+│   ├── marshall.md                    #   Leader / Coordinator
 │   ├── euler.md                       #   Algorithm Designer
 │   ├── forge.md                       #   Code Developer
 │   ├── sentinel.md                    #   Code Tester
@@ -316,9 +336,9 @@ plugin/agent-teams-coder/
 ├── skills/                            # 3 shared knowledge packages
 │   ├── shared-memory-protocol/        #   Memory governance rules
 │   │   └── SKILL.md
-│   ├── seven-point-checkpoint/        #   Mandatory pre-task checklist
+│   ├── seven-point-checkpoint/        #   8-point mandatory checkpoint (with Chronicle CC)
 │   │   └── SKILL.md
-│   └── task-workflow/                 #   7-phase pipeline definition
+│   └── task-workflow/                 #   7-phase pipeline + Chronicle CC rules
 │       └── SKILL.md
 └── scripts/
     └── launch-team.sh                 #   tmux auto-detection + launcher
@@ -442,7 +462,7 @@ Agent-Teams-Coder/
 | Sentinel → Forge | Bug → Fix: Sentinel reports bugs, Forge fixes, regression test loop (max 3 rounds)                               |
 | Lens → Atlas     | Analysis → Docs: Lens provides line-by-line code explanation for Atlas                                           |
 | Sentinel → Atlas | Tests → Docs: Sentinel provides test cases, Atlas converts to usage examples                                     |
-| Chronicle ← All  | Logging: Chronicle monitors all member activities and generates decision logs                                    |
+| All → Chronicle  | CC Protocol: Every member notifies Chronicle on task completion (Step 8 of checkpoint)                           |
 
 ### Atlas Manual — Four Chapters
 
