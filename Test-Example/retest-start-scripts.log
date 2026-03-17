@@ -1,0 +1,74 @@
+================================================================
+  Start Scripts Validation Test
+  Date: 2026-03-17T08:51:47Z
+  Project: /Users/guoxinjing/Library/Mobile Documents/com~apple~CloudDocs/下载_iCloud/Claude_project/Agent_Teams/worktree-claude
+================================================================
+
+========================================
+TEST 1: Start scripts existence
+========================================
+  [PASS] start-leader.sh exists
+  [PASS] start-euler.sh exists
+  [PASS] start-forge.sh exists
+  [PASS] start-sentinel.sh exists
+  [PASS] start-lens.sh exists
+  [PASS] start-atlas.sh exists
+  [PASS] start-chronicle.sh exists
+
+========================================
+TEST 2: Start scripts executable/shebang
+========================================
+  [PASS] start-leader.sh: shebang=true executable=true
+  [PASS] start-euler.sh: shebang=true executable=true
+  [PASS] start-forge.sh: shebang=true executable=true
+  [PASS] start-sentinel.sh: shebang=true executable=true
+  [PASS] start-lens.sh: shebang=true executable=true
+  [PASS] start-atlas.sh: shebang=true executable=true
+  [PASS] start-chronicle.sh: shebang=true executable=true
+
+========================================
+TEST 3: Start scripts reference correct agent dir
+========================================
+  [PASS] start-leader.sh references leader
+  [PASS] start-euler.sh references euler
+  [PASS] start-forge.sh references forge
+  [PASS] start-sentinel.sh references sentinel
+  [PASS] start-lens.sh references lens
+  [PASS] start-atlas.sh references atlas
+  [PASS] start-chronicle.sh references chronicle
+
+========================================
+TEST 4: Start scripts contain claude invocation
+========================================
+  [PASS] start-leader.sh invokes claude
+  [PASS] start-euler.sh invokes claude
+  [PASS] start-forge.sh invokes claude
+  [PASS] start-sentinel.sh invokes claude
+  [PASS] start-lens.sh invokes claude
+  [PASS] start-atlas.sh invokes claude
+  [PASS] start-chronicle.sh invokes claude
+
+========================================
+TEST 5: panel.sh validation
+========================================
+  [PASS] panel.sh exists
+  [PASS] panel.sh is executable or has shebang
+  [PASS] panel.sh references tmux (multi-agent panel)
+  [PASS] panel.sh references 7/7 agents
+
+========================================
+TEST 6: Model parameter support
+========================================
+  [PASS] start-leader.sh supports model selection
+  [PASS] start-euler.sh supports model selection
+  [PASS] start-forge.sh supports model selection
+  [PASS] start-sentinel.sh supports model selection
+  [PASS] start-lens.sh supports model selection
+  [PASS] start-atlas.sh supports model selection
+  [PASS] start-chronicle.sh supports model selection
+
+================================================================
+  SUMMARY: Start Scripts Validation
+  Total: 39 | Pass: 39 | Fail: 0 | Skip: 0
+  Pass Rate: 100%
+================================================================

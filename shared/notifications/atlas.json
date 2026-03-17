@@ -1,0 +1,22 @@
+{
+  "notifications": [
+    {
+      "id": "notif_20260317150056_438",
+      "from": "marshall",
+      "to": "atlas",
+      "subject": "broadcast_test",
+      "content": "hello everyone",
+      "timestamp": "2026-03-17T07:00:56Z",
+      "read": true
+    },
+    {
+      "id": "notif_20260317165348_322",
+      "from": "sentinel",
+      "to": "atlas",
+      "subject": "Retest Report",
+      "content": "Retest complete. 4/4 fixes verified. Test cases in Test-Example/ updated with retest logs.",
+      "timestamp": "2026-03-17T08:53:48Z",
+      "read": false
+    }
+  ]
+}

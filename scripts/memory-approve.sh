@@ -10,7 +10,7 @@
 #   4. 通知提交者
 ################################################################################
 
-set -e
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 QUEUE_FILE="$SCRIPT_DIR/../shared/memory/approval-queue.json"
@@ -27,27 +27,34 @@ else
     echo "❌ 需要 Python"; exit 1
 fi
 
+QUEUE_FILE="$QUEUE_FILE" MEMORY_FILE="$MEMORY_FILE" \
+REQUEST_ID="$REQUEST_ID" COMMENT="$COMMENT" \
 $PY -c "
-import json, sys
+import json, sys, os
 from datetime import datetime
 
-with open('$QUEUE_FILE', 'r') as f:
+queue_file = os.environ['QUEUE_FILE']
+memory_file = os.environ['MEMORY_FILE']
+request_id = os.environ['REQUEST_ID']
+comment = os.environ['COMMENT']
+
+with open(queue_file, 'r') as f:
     queue = json.load(f)
 
-with open('$MEMORY_FILE', 'r') as f:
+with open(memory_file, 'r') as f:
     memory = json.load(f)
 
 # 查找请求
 found = False
 for req in queue['requests']:
-    if req['id'] == '$REQUEST_ID':
+    if req['id'] == request_id:
         if req['status'] != 'pending':
-            print(f'⚠️  请求 {req[\"id\"]} 状态为 {req[\"status\"]}，不是 pending')
+            print(f'request {req[\"id\"]} status is {req[\"status\"]}, not pending')
             sys.exit(1)
 
         # 更新审批状态
         req['status'] = 'approved'
-        req['reviewer_comment'] = '$COMMENT'
+        req['reviewer_comment'] = comment
         req['reviewed_at'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
 
         # 执行变更
@@ -71,17 +78,17 @@ for req in queue['requests']:
         break
 
 if not found:
-    print(f'❌ 找不到请求: $REQUEST_ID')
+    print(f'error: not found request: {request_id}')
     sys.exit(1)
 
-with open('$QUEUE_FILE', 'w') as f:
+with open(queue_file, 'w') as f:
     json.dump(queue, f, ensure_ascii=False, indent=2)
 
-with open('$MEMORY_FILE', 'w') as f:
+with open(memory_file, 'w') as f:
     json.dump(memory, f, ensure_ascii=False, indent=2)
 
-print(f'✅ 已批准请求 $REQUEST_ID')
-print(f'   操作: {action} \"{key}\"')
-print(f'   提交者: {requester}')
-print(f'   共享记忆已更新')
+print(f'approved request {request_id}')
+print(f'   action: {action} \"{key}\"')
+print(f'   requester: {requester}')
+print(f'   shared memory updated')
 "

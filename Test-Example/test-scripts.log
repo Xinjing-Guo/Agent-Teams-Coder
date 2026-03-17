@@ -1,0 +1,69 @@
+============================================================
+  Test 1: Shell Scripts Functional
+  Date: 2026-03-17T08:04:35Z
+============================================================
+
+==================================================
+notify.sh
+==================================================
+  [PASS] notify.sh marshall->euler sent
+  [PASS] euler.json contains TEST_subject_1
+  [PASS] forge->all: all 6 agents received broadcast
+  [PASS] self-skip: forge.json not created (correct)
+  [PASS] notify.sh missing args returns error
+
+==================================================
+check-notify.sh
+==================================================
+  [PASS] check-notify euler: found unread
+  [PASS] check-notify nonexistent: reports no notifications
+  [PASS] check-notify mtime cache works
+
+==================================================
+memory-request.sh
+==================================================
+  [PASS] memory-request.sh submitted
+  [PASS] Request in queue with status=pending
+  [PASS] memory-request.sh rejects invalid action
+
+==================================================
+memory-approve.sh
+==================================================
+  [PASS] memory-approve.sh approved req_20260317160434_323
+  [PASS] Approved entry written to shared-memory.json
+  [PASS] Queue status changed to approved
+  [PASS] Re-approval correctly rejected
+  [PASS] Approve non-existent request rejected
+
+==================================================
+memory-reject.sh
+==================================================
+  [PASS] memory-reject.sh rejected req_20260317160434_184
+  [PASS] Queue status changed to rejected
+  [PASS] Rejected key NOT in shared-memory.json
+
+==================================================
+memory-write.sh
+==================================================
+  [PASS] memory-write.sh direct write success
+  [PASS] Direct write in shared-memory with author=leader
+  [PASS] memory-write.sh missing args errors
+
+==================================================
+update-status.sh
+==================================================
+  [PASS] update-status.sh marshall->working
+  [PASS] status.json marshall updated correctly
+  [PASS] Invalid status rejected
+  [PASS] Unknown agent rejected
+
+==================================================
+update-phase.sh
+==================================================
+  [FAIL] update-phase.sh -- out=/Users/guoxinjing/Library/Mobile Documents/com~apple~CloudDocs/下载_iCloud/Claude_project/Agent_Teams/
+  [FAIL] status.json phase -- {'current_task': '', 'phase': '', 'phase_description': ''}
+  [FAIL] update-phase.sh phase 4 -- out=/Users/guoxinjing/Library/Mobile Documents/com~apple~CloudDocs/下载_iCloud/Claude_project/Agent_Teams/
+
+============================================================
+  Test 1: Shell Scripts Functional: Total=29 Pass=26 Fail=3 Skip=0 Rate=89%
+============================================================

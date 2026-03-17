@@ -1,0 +1,54 @@
+================================================================
+  Plugin Structure Validation Test
+  Date: 2026-03-17T08:51:45Z
+  Project: /Users/guoxinjing/Library/Mobile Documents/com~apple~CloudDocs/下载_iCloud/Claude_project/Agent_Teams/worktree-claude
+================================================================
+
+========================================
+TEST 1: Plugin directory structure
+========================================
+  [PASS] Plugin subdirectory exists: agents/
+  [PASS] Plugin subdirectory exists: skills/
+  [PASS] Plugin subdirectory exists: hooks/
+  [PASS] Plugin subdirectory exists: commands/
+  [PASS] Plugin subdirectory exists: scripts/
+
+========================================
+TEST 2: Agent definition files in plugin
+========================================
+  [PASS] Agent definition: euler.md (    2592 bytes)
+  [PASS] Agent definition: forge.md (    2699 bytes)
+  [PASS] Agent definition: sentinel.md (    3037 bytes)
+  [PASS] Agent definition: lens.md (    2534 bytes)
+  [PASS] Agent definition: atlas.md (    2608 bytes)
+  [PASS] Agent definition: chronicle.md (    2370 bytes)
+  [PASS] Leader agent definition exists
+
+========================================
+TEST 3: plugin.json validation
+========================================
+  [PASS] plugin.json exists at /Users/guoxinjing/Library/Mobile Documents/com~apple~CloudDocs/下载_iCloud/Claude_project/Agent_Teams/worktree-claude/plugin/agent-teams-coder/.claude-plugin/plugin.json
+  Keys: ['name', 'version', 'description', 'author', 'repository', 'license', 'keywords']
+  [PASS] plugin.json is valid JSON
+
+========================================
+TEST 4: Plugin skill files
+========================================
+  [PASS] Skill file: task-workflow/SKILL.md (    2085 bytes)
+  [PASS] Skill file: seven-point-checkpoint/SKILL.md (    1747 bytes)
+  [PASS] Skill file: shared-memory-protocol/SKILL.md (    1756 bytes)
+  Total skill files: 3
+
+========================================
+TEST 5: Plugin scripts and commands
+========================================
+  [PASS] launch-team.sh exists
+  [PASS] launch-team.sh is executable or has shebang
+  [PASS] Command file: agent-team.md (    4996 bytes)
+  [PASS] Hooks directory exists (empty - may be intentional)
+
+================================================================
+  SUMMARY: Plugin Structure Validation
+  Total: 21 | Pass: 21 | Fail: 0 | Skip: 0
+  Pass Rate: 100%
+================================================================

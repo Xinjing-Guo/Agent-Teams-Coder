@@ -1,0 +1,67 @@
+================================================================
+  Shared Memory Integrity Test
+  Date: 2026-03-17T08:51:45Z
+  Project: /Users/guoxinjing/Library/Mobile Documents/com~apple~CloudDocs/下载_iCloud/Claude_project/Agent_Teams/worktree-claude
+================================================================
+
+--- SETUP: Backing up data ---
+Done.
+
+========================================
+TEST 1: JSON file validity
+========================================
+  Valid JSON: 189 chars
+  [PASS] shared-memory.json is valid JSON
+  Valid JSON: 313 chars
+  [PASS] approval-queue.json is valid JSON
+  Valid JSON: 1052 chars
+  [PASS] status.json is valid JSON
+
+========================================
+TEST 2: shared-memory.json structure
+========================================
+  Structure OK: meta{version,description,last_updated,updated_by}, entries{}
+  [PASS] shared-memory.json has correct structure
+
+========================================
+TEST 3: approval-queue.json structure
+========================================
+  Structure OK: meta, requests[] (1 items)
+  [PASS] approval-queue.json has correct structure
+
+========================================
+TEST 4: status.json structure
+========================================
+  Structure OK: meta, team_status, members(7)
+  [PASS] status.json has correct structure with all 7 members
+
+========================================
+TEST 5: Orphaned notifications check
+========================================
+  [PASS] Notification file atlas.json belongs to valid agent
+  [PASS] Notification file chronicle.json belongs to valid agent
+  [PASS] Notification file euler.json belongs to valid agent
+  [PASS] Notification file forge.json belongs to valid agent
+  [PASS] Notification file lens.json belongs to valid agent
+  [PASS] Notification file marshall.json belongs to valid agent
+  [PASS] Notification file sentinel.json belongs to valid agent
+  No orphaned notifications found.
+
+========================================
+TEST 6: Concurrent request submission
+========================================
+Submitting 3 requests in quick succession...
+2
+  req_20260317165146_527: TEST_concurrent_1
+  req_20260317165146_436: TEST_concurrent_3
+  [FAIL] Concurrent access -- Expected 3 requests, got 2 (possible race condition)
+  [PASS] approval-queue.json still valid JSON after concurrent writes
+
+--- TEARDOWN: Restoring backups ---
+Done.
+
+================================================================
+  SUMMARY: Shared Memory Integrity Test
+  Total: 15 | Pass: 14 | Fail: 1 | Skip: 0
+  Pass Rate: 93%
+================================================================

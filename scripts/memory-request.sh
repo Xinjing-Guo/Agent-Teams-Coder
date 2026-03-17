@@ -11,7 +11,7 @@
 #   bash memory-request.sh write "api_auth" "使用 JWT" "统一认证方案"
 ################################################################################
 
-set -e
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 QUEUE_FILE="$SCRIPT_DIR/../shared/memory/approval-queue.json"
@@ -31,24 +31,8 @@ REQUESTER="${CLAUDE_CODE_TEAM_NAME:-${AGENT_NAME:-unknown}}"
 # 验证 action
 case "$ACTION" in
     write|edit|delete) ;;
-    *) echo "❌ 无效的 action: $ACTION（只支持 write/edit/delete）"; exit 1 ;;
+    *) echo "❌ 无效的 action: ${ACTION} (只支持 write/edit/delete)"; exit 1 ;;
 esac
-
-# 构建新请求的 JSON
-NEW_REQUEST=$(cat <<EOF
-{
-    "id": "$REQUEST_ID",
-    "requester": "$REQUESTER",
-    "action": "$ACTION",
-    "key": "$KEY",
-    "content": "$CONTENT",
-    "reason": "$REASON",
-    "status": "pending",
-    "reviewer_comment": "",
-    "created_at": "$TIMESTAMP"
-}
-EOF
-)
 
 # 检查 python3 或 python 可用性
 if command -v python3 &>/dev/null; then
@@ -60,18 +44,51 @@ else
     exit 1
 fi
 
-# 将请求追加到队列
+# 将请求追加到队列（通过环境变量传递，防止注入）
+# 使用文件锁防止并发写入丢失
+LOCK_FILE="${QUEUE_FILE}.lock"
+
+QUEUE_FILE="$QUEUE_FILE" LOCK_FILE="$LOCK_FILE" REQUEST_ID="$REQUEST_ID" REQUESTER="$REQUESTER" \
+ACTION="$ACTION" KEY="$KEY" CONTENT="$CONTENT" REASON="$REASON" TIMESTAMP="$TIMESTAMP" \
 $PY -c "
-import json, sys
+import json, os, fcntl, time
 
-with open('$QUEUE_FILE', 'r') as f:
-    queue = json.load(f)
+queue_file = os.environ['QUEUE_FILE']
+lock_file = os.environ['LOCK_FILE']
 
-new_req = json.loads('''$NEW_REQUEST''')
-queue['requests'].append(new_req)
+# 获取文件锁（最多等待 5 秒）
+lock_fd = open(lock_file, 'w')
+for attempt in range(50):
+    try:
+        fcntl.flock(lock_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        break
+    except BlockingIOError:
+        time.sleep(0.1)
+else:
+    raise TimeoutError('无法获取文件锁')
 
-with open('$QUEUE_FILE', 'w') as f:
-    json.dump(queue, f, ensure_ascii=False, indent=2)
+try:
+    with open(queue_file, 'r') as f:
+        queue = json.load(f)
+
+    new_req = {
+        'id': os.environ['REQUEST_ID'],
+        'requester': os.environ['REQUESTER'],
+        'action': os.environ['ACTION'],
+        'key': os.environ['KEY'],
+        'content': os.environ['CONTENT'],
+        'reason': os.environ['REASON'],
+        'status': 'pending',
+        'reviewer_comment': '',
+        'created_at': os.environ['TIMESTAMP']
+    }
+    queue['requests'].append(new_req)
+
+    with open(queue_file, 'w') as f:
+        json.dump(queue, f, ensure_ascii=False, indent=2)
+finally:
+    fcntl.flock(lock_fd, fcntl.LOCK_UN)
+    lock_fd.close()
 "
 
 echo "✅ 变更请求已提交"

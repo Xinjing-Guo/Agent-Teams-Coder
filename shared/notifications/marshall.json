@@ -1,0 +1,31 @@
+{
+  "notifications": [
+    {
+      "id": "notif_20260317161126_868",
+      "from": "atlas",
+      "to": "marshall",
+      "subject": "综合审计报告已完成",
+      "content": "final-audit-report.md 已写入 Test-Example/ 目录，包含四章完整内容。请审阅。",
+      "timestamp": "2026-03-17T08:11:26Z",
+      "read": false
+    },
+    {
+      "id": "notif_20260317164357_253",
+      "from": "forge",
+      "to": "marshall",
+      "subject": "Bug fixes complete",
+      "content": "All 4 fixes applied: BUG-001 declare-A, BUG-002 marshall.md, set-euo-pipefail, injection hardening. Test result: 29/29 PASS (100%). Report at Test-Example/forge-fix-report.md",
+      "timestamp": "2026-03-17T08:43:57Z",
+      "read": false
+    },
+    {
+      "id": "notif_20260317165343_902",
+      "from": "sentinel",
+      "to": "marshall",
+      "subject": "Retest Report",
+      "content": "All 4 fixes verified PASS. 102/104 executable tests pass. Suite 2 BLOCKED: test-agent-structure.sh itself has declare -A bug. Verdict: CONDITIONAL PASS. See Test-Example/retest-summary.md",
+      "timestamp": "2026-03-17T08:53:43Z",
+      "read": false
+    }
+  ]
+}

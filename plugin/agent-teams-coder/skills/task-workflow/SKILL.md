@@ -39,8 +39,27 @@ Phase 1 ──→ Phase 2 ──→ Phase 3 ──→ Phase 4 ──→ Phase 5 
 | Documentation update     | 1, 5, 6, 7    | 2, 3, 4                               |
 | Performance optimization | 1, 2, 3, 4, 7 | 5 (analysis), 6 (docs)                |
 
+## Chronicle CC Rule
+
+Every agent MUST notify Chronicle upon completing their phase work:
+
+```bash
+bash scripts/notify.sh <agent_name> chronicle "<phase summary>" "<details: what was done, files produced, key data>"
+```
+
+| Phase | Who CCs Chronicle | Content                                               |
+| ----- | ----------------- | ----------------------------------------------------- |
+| 2     | Euler             | Algorithm design summary, complexity analysis         |
+| 3     | Forge             | Code files, language, lines, implementation notes     |
+| 4     | Sentinel          | Test case count, pass rate, bug list, fix status      |
+| 5     | Lens              | Analysis scope, issues found, architecture assessment |
+| 6     | Atlas             | Document chapters, page count, coverage               |
+| 7     | Marshall          | Final deliverables list, overall summary              |
+
+Chronicle cannot passively "listen" — it must be actively notified by each member.
+
 ## Parallel Opportunities
 
-- Chronicle runs throughout all phases (background)
+- Chronicle runs throughout all phases (receives notifications from all members)
 - Lens + Atlas can start together after Phase 4 passes
 - Euler can pre-work on Phase 2 while Marshall finishes Phase 1

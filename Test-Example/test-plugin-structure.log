@@ -1,0 +1,47 @@
+============================================================
+  Test 3: Plugin Structure Validation
+  Date: 2026-03-17T08:04:35Z
+============================================================
+
+==================================================
+Plugin subdirectories
+==================================================
+  [PASS] agents/ exists
+  [PASS] skills/ exists
+  [PASS] hooks/ exists
+  [PASS] commands/ exists
+  [PASS] scripts/ exists
+
+==================================================
+Agent definitions
+==================================================
+  [PASS] euler.md (2592B)
+  [PASS] forge.md (2699B)
+  [PASS] sentinel.md (3037B)
+  [PASS] lens.md (2534B)
+  [PASS] atlas.md (2608B)
+  [PASS] chronicle.md (2370B)
+  [FAIL] Leader agent def -- neither marshall.md nor leader.md found
+
+==================================================
+plugin.json
+==================================================
+  [PASS] plugin.json exists
+  [PASS] plugin.json valid JSON (keys: ['name', 'version', 'description', 'author', 'repository', 'license', 'keywords'])
+
+==================================================
+Plugin skill files
+==================================================
+  [PASS] skills/task-workflow/SKILL.md (2085B)
+  [PASS] skills/seven-point-checkpoint/SKILL.md (1747B)
+  [PASS] skills/shared-memory-protocol/SKILL.md (1756B)
+
+==================================================
+Scripts and commands
+==================================================
+  [PASS] launch-team.sh exists
+  [PASS] agent-team.md (4996B)
+
+============================================================
+  Test 3: Plugin Structure Validation: Total=19 Pass=18 Fail=1 Skip=0 Rate=94%
+============================================================
