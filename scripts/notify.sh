@@ -5,7 +5,7 @@
 #   to 可以是: marshall, euler, forge, sentinel, lens, atlas, chronicle, all
 ################################################################################
 
-set -e
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 NOTIFY_DIR="$SCRIPT_DIR/../shared/notifications"
@@ -47,23 +47,27 @@ for TARGET in "${TARGETS[@]}"; do
         echo '{"notifications": []}' > "$TARGET_FILE"
     fi
 
+    TARGET_FILE="$TARGET_FILE" NOTIF_ID="$NOTIF_ID" FROM="$FROM" \
+    TARGET="$TARGET" SUBJECT="$SUBJECT" CONTENT="$CONTENT" TIMESTAMP="$TIMESTAMP" \
     $PY -c "
-import json
+import json, os
 
-with open('$TARGET_FILE', 'r') as f:
+target_file = os.environ['TARGET_FILE']
+
+with open(target_file, 'r') as f:
     data = json.load(f)
 
 data['notifications'].append({
-    'id': '$NOTIF_ID',
-    'from': '$FROM',
-    'to': '$TARGET',
-    'subject': '$SUBJECT',
-    'content': '''$CONTENT''',
-    'timestamp': '$TIMESTAMP',
+    'id': os.environ['NOTIF_ID'],
+    'from': os.environ['FROM'],
+    'to': os.environ['TARGET'],
+    'subject': os.environ['SUBJECT'],
+    'content': os.environ['CONTENT'],
+    'timestamp': os.environ['TIMESTAMP'],
     'read': False
 })
 
-with open('$TARGET_FILE', 'w') as f:
+with open(target_file, 'w') as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
 "
     echo "📬 已通知 $TARGET: $SUBJECT"

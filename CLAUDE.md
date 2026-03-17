@@ -74,21 +74,22 @@
 阶段 2: 算法设计
   Marshall（Leader） → Euler（算法设计师）: 下发算法设计任务
   Euler（算法设计师） 设计算法 → 通知 Forge（代码开发） 算法方案
-  Chronicle（日志记录） 记录算法设计过程
+  Euler（算法设计师） → 抄送 Chronicle: 算法方案摘要、复杂度分析结论
 
 阶段 3: 代码开发
   Euler（算法设计师） + Forge（代码开发） 协作: 将算法转化为代码
   Forge（代码开发） 完成代码 → 通知 Sentinel（代码测试） 开始测试
-  Chronicle（日志记录） 记录开发过程
+  Forge（代码开发） → 抄送 Chronicle: 代码文件列表、语言、行数、关键实现说明
 
 阶段 4: 代码测试
   Sentinel（代码测试） 执行测试 → 生成测试报告
-  测试报告群发: Forge（代码开发）, Atlas（文档工程师）, Chronicle（日志记录）, Marshall（Leader）
-  如有 Bug → Forge（代码开发） 修复 → 重新测试（循环直到通过）
+  测试报告群发: Forge（代码开发）, Atlas（文档工程师）, Marshall（Leader）
+  Sentinel（代码测试） → 抄送 Chronicle: 测试用例数、通过率、Bug 列表、修复状态
+  如有 Bug → Forge（代码开发） 修复 → 抄送 Chronicle 修复内容 → 重新测试（循环直到通过）
 
 阶段 5: 代码分析
   Lens（代码分析） 分析代码结构 → 逐行解释 → 发送给 Atlas（文档工程师）
-  Chronicle（日志记录） 记录分析过程
+  Lens（代码分析） → 抄送 Chronicle: 分析范围、发现的问题、架构评估
 
 阶段 6: 文档编写
   Atlas（文档工程师） 整合: Sentinel（代码测试） 的测试用例 + Lens（代码分析） 的代码分析
@@ -97,9 +98,11 @@
     ├── 使用说明书
     ├── 使用案例（来自 Sentinel（代码测试） 测试用例）
     └── 代码逐行解释（来自 Lens（代码分析） 分析）
+  Atlas（文档工程师） → 抄送 Chronicle: 文档章节结构、页数、覆盖内容
 
 阶段 7: 汇总交付
   Marshall（Leader） 汇总所有成果 → 交付用户
+  Marshall（Leader） → 抄送 Chronicle: 最终交付物清单、总结
   Chronicle（日志记录） 生成本次更新总结
 ```
 
@@ -189,9 +192,9 @@ bash scripts/update-phase.sh <phase_number> "<task_name>"
 | Atlas（文档工程师）   | `manual-structure.md`                                  |
 | Chronicle（日志记录） | `activity-logging.md`                                  |
 
-## ⚡ 七步强制检查点（所有成员必须遵守）
+## ⚡ 八步强制检查点（所有成员必须遵守）
 
-每次收到任务消息后，在执行任何操作前，必须按顺序完成以下 7 步：
+每次收到任务消息后，在执行任何操作前，必须按顺序完成以下 8 步：
 
 1. **任务范围确认** — 理解任务，确认在自己职责内，模糊则问 Marshall（Leader）
 2. **共享记忆读取** — 读取 `shared-memory.json`，不得跳过
@@ -200,8 +203,45 @@ bash scripts/update-phase.sh <phase_number> "<task_name>"
 5. **Skill 适用性检查** — 检查 `skills/` 目录，有匹配则优先使用
 6. **任务可分解性评估** — 步骤 ≥3 或涉及多文件 → 拆分子任务
 7. **Git 操作检测** — 涉及 git commit/push 必须获得用户授权
+8. **完成后抄送 Chronicle** — 任务完成时，必须将产出摘要通知 Chronicle（见下方规则）
 
 **违规自检**: 发现跳过检查点 → 停止 → 从第 1 步重新开始。
+
+## 📋 Chronicle 抄送规则（所有成员必须遵守）
+
+Chronicle 是团队的记忆，负责记录所有成员的活动。为确保日志完整，**每个成员在完成任务后必须主动抄送 Chronicle**。
+
+### 何时抄送
+
+- 完成一个阶段性任务时（如算法设计完成、代码开发完成、测试报告出炉）
+- 发现重要问题时（如 Bug、安全漏洞、架构缺陷）
+- 做出关键决策时
+- 产出任何文件/报告/代码时
+
+### 如何抄送
+
+```bash
+# 标准抄送格式
+bash scripts/notify.sh <自己的名字> chronicle "<任务摘要>" "<详细内容：做了什么、产出了什么、关键发现>"
+
+# 示例
+bash scripts/notify.sh forge chronicle "代码开发完成" "完成 update-phase.sh 修复：declare-A 替换为 case 语句，修改文件 1 个，测试通过"
+bash scripts/notify.sh sentinel chronicle "测试报告" "5 个测试套件执行完毕：169 用例，165 通过，4 失败，发现 BUG-001 和 BUG-002"
+```
+
+### 抄送内容要求
+
+通知内容必须包含：
+
+1. **做了什么**（动作）
+2. **产出了什么**（文件名、报告名）
+3. **关键数据**（测试通过率、Bug 数量、修改文件数等）
+4. **发现的问题**（如有）
+
+### 🚫 严禁
+
+- 完成任务后不通知 Chronicle（Chronicle 无法"监听"，必须被主动告知）
+- 只发送模糊摘要（如"任务完成"），必须包含具体数据
 
 ## 初始化检查（每个 Agent 启动时执行）
 

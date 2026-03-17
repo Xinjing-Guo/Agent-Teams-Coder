@@ -1,0 +1,31 @@
+{
+  "notifications": [
+    {
+      "id": "notif_20260317150056_438",
+      "from": "marshall",
+      "to": "chronicle",
+      "subject": "broadcast_test",
+      "content": "hello everyone",
+      "timestamp": "2026-03-17T07:00:56Z",
+      "read": true
+    },
+    {
+      "id": "notif_20260317161131_912",
+      "from": "atlas",
+      "to": "chronicle",
+      "subject": "综合审计报告已完成",
+      "content": "Atlas 已完成 final-audit-report.md 编写，请记录此文档更新活动。",
+      "timestamp": "2026-03-17T08:11:31Z",
+      "read": false
+    },
+    {
+      "id": "notif_20260317165348_688",
+      "from": "sentinel",
+      "to": "chronicle",
+      "subject": "Retest Report",
+      "content": "Retest complete. 4/4 fixes verified. Conditional PASS. Full report: Test-Example/retest-summary.md",
+      "timestamp": "2026-03-17T08:53:48Z",
+      "read": false
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 # 用法: bash memory-write.sh <key> <content>
 ################################################################################
 
-set -e
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 MEMORY_FILE="$SCRIPT_DIR/../shared/memory/shared-memory.json"
@@ -20,15 +20,20 @@ else
     echo "❌ 需要 Python"; exit 1
 fi
 
+MEMORY_FILE="$MEMORY_FILE" KEY="$KEY" CONTENT="$CONTENT" \
 $PY -c "
-import json
+import json, os
 from datetime import datetime
 
-with open('$MEMORY_FILE', 'r') as f:
+memory_file = os.environ['MEMORY_FILE']
+key = os.environ['KEY']
+content = os.environ['CONTENT']
+
+with open(memory_file, 'r') as f:
     memory = json.load(f)
 
-memory['entries']['$KEY'] = {
-    'content': '''$CONTENT''',
+memory['entries'][key] = {
+    'content': content,
     'author': 'leader',
     'approved_by': 'leader (direct)',
     'updated_at': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
@@ -36,10 +41,10 @@ memory['entries']['$KEY'] = {
 memory['meta']['last_updated'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
 memory['meta']['updated_by'] = 'leader'
 
-with open('$MEMORY_FILE', 'w') as f:
+with open(memory_file, 'w') as f:
     json.dump(memory, f, ensure_ascii=False, indent=2)
 
-print('✅ 共享记忆已更新')
-print(f'   键: $KEY')
-print(f'   作者: leader (直接写入)')
+print('shared memory updated')
+print(f'   key: {key}')
+print(f'   author: leader (direct write)')
 "

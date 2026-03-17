@@ -4,7 +4,7 @@
 # 用法: bash memory-reject.sh <request_id> <reason>
 ################################################################################
 
-set -e
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 QUEUE_FILE="$SCRIPT_DIR/../shared/memory/approval-queue.json"
@@ -20,22 +20,27 @@ else
     echo "❌ 需要 Python"; exit 1
 fi
 
+QUEUE_FILE="$QUEUE_FILE" REQUEST_ID="$REQUEST_ID" REASON="$REASON" \
 $PY -c "
-import json, sys
+import json, sys, os
 from datetime import datetime
 
-with open('$QUEUE_FILE', 'r') as f:
+queue_file = os.environ['QUEUE_FILE']
+request_id = os.environ['REQUEST_ID']
+reason = os.environ['REASON']
+
+with open(queue_file, 'r') as f:
     queue = json.load(f)
 
 found = False
 for req in queue['requests']:
-    if req['id'] == '$REQUEST_ID':
+    if req['id'] == request_id:
         if req['status'] != 'pending':
-            print(f'⚠️  请求 {req[\"id\"]} 状态为 {req[\"status\"]}，不是 pending')
+            print(f'request {req[\"id\"]} status is {req[\"status\"]}, not pending')
             sys.exit(1)
 
         req['status'] = 'rejected'
-        req['reviewer_comment'] = '$REASON'
+        req['reviewer_comment'] = reason
         req['reviewed_at'] = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
         found = True
         requester = req['requester']
@@ -43,14 +48,14 @@ for req in queue['requests']:
         break
 
 if not found:
-    print(f'❌ 找不到请求: $REQUEST_ID')
+    print(f'error: not found request: {request_id}')
     sys.exit(1)
 
-with open('$QUEUE_FILE', 'w') as f:
+with open(queue_file, 'w') as f:
     json.dump(queue, f, ensure_ascii=False, indent=2)
 
-print(f'❌ 已拒绝请求 $REQUEST_ID')
-print(f'   键: {key}')
-print(f'   提交者: {requester}')
-print(f'   理由: $REASON')
+print(f'rejected request {request_id}')
+print(f'   key: {key}')
+print(f'   requester: {requester}')
+print(f'   reason: {reason}')
 "

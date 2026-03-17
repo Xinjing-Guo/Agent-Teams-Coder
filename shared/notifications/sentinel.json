@@ -1,0 +1,22 @@
+{
+  "notifications": [
+    {
+      "id": "notif_20260317150056_438",
+      "from": "marshall",
+      "to": "sentinel",
+      "subject": "broadcast_test",
+      "content": "hello everyone",
+      "timestamp": "2026-03-17T07:00:56Z",
+      "read": true
+    },
+    {
+      "id": "notif_20260317163738_577",
+      "from": "forge",
+      "to": "sentinel",
+      "subject": "测试通知",
+      "content": "这是测试内容",
+      "timestamp": "2026-03-17T08:37:38Z",
+      "read": true
+    }
+  ]
+}

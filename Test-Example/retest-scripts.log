@@ -1,0 +1,100 @@
+================================================================
+  Shell Scripts Functional Test Suite
+  Date: 2026-03-17T08:51:40Z
+  Project: /Users/guoxinjing/Library/Mobile Documents/com~apple~CloudDocs/下载_iCloud/Claude_project/Agent_Teams/worktree-claude
+================================================================
+
+--- SETUP: Backing up shared data ---
+Backups saved to ./backups
+
+========================================
+TEST 1: notify.sh
+========================================
+[1a] Send notification: marshall -> euler
+  [PASS] notify.sh marshall->euler sent successfully
+  [PASS] Notification file contains correct data for euler
+[1c] Send notification: forge -> all
+  [PASS] notify.sh forge->all: all 6 agents received broadcast
+  [PASS] notify.sh self-skip: forge did not receive own broadcast
+[1e] Test missing arguments
+  [PASS] notify.sh missing args returns error
+
+========================================
+TEST 2: check-notify.sh
+========================================
+[2a] Check notifications for euler
+  [PASS] check-notify.sh euler: found unread notifications
+[2b] Check notifications for non-existent agent
+  [PASS] check-notify.sh nonexistent agent: reports no notifications
+[2c] Second check for euler (mtime cache)
+  [FAIL] check-notify.sh mtime cache -- Output: 共 0 条未读通知
+
+========================================
+TEST 3: memory-request.sh
+========================================
+[3a] Submit memory change request
+  [PASS] memory-request.sh submitted successfully
+  Request ID: req_20260317165141_815
+  [PASS] Request appears in approval-queue.json with status pending
+[3c] Test invalid action
+  [PASS] memory-request.sh rejects invalid action
+
+========================================
+TEST 4: memory-approve.sh
+========================================
+[4a] Approve request req_20260317165141_815
+  [PASS] memory-approve.sh approved successfully
+  [PASS] Approved entry written to shared-memory.json
+  [PASS] Queue status changed to approved
+[4d] Approve non-existent request
+  [PASS] memory-approve.sh rejects non-existent request
+[4e] Approve already-approved request
+  [PASS] memory-approve.sh rejects re-approval
+
+========================================
+TEST 5: memory-reject.sh
+========================================
+[5a] Submit request for rejection test
+  Request ID: req_20260317165141_601
+[5b] Reject request req_20260317165141_601
+  [PASS] memory-reject.sh rejected successfully
+  [PASS] Queue status changed to rejected
+  [PASS] Rejected key NOT written to shared-memory.json
+
+========================================
+TEST 6: memory-write.sh
+========================================
+[6a] Leader direct write
+  [PASS] memory-write.sh direct write successful
+  [PASS] Direct write entry in shared-memory.json with author=leader
+[6c] Test missing arguments
+  [PASS] memory-write.sh missing args returns error
+
+========================================
+TEST 7: update-status.sh
+========================================
+[7a] Update marshall status to working
+  [PASS] update-status.sh marshall->working
+  [PASS] status.json updated correctly for marshall
+[7c] Test invalid status
+  [PASS] update-status.sh rejects invalid status
+[7d] Test unknown agent
+  [PASS] update-status.sh rejects unknown agent
+
+========================================
+TEST 8: update-phase.sh
+========================================
+[8a] Update to phase 1 Testing
+  [PASS] update-phase.sh phase 1 update
+  [PASS] status.json phase field updated correctly
+[8c] Update to phase 4
+  [PASS] update-phase.sh phase 4 with correct description
+
+--- TEARDOWN: Restoring backups ---
+Backups restored.
+
+================================================================
+  SUMMARY: Shell Scripts Functional Test
+  Total: 29 | Pass: 28 | Fail: 1 | Skip: 0
+  Pass Rate: 96%
+================================================================

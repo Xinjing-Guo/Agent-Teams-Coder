@@ -6,6 +6,7 @@
 #
 # 借鉴 agentGroup 的 mtime 缓存机制，避免每次都解析 JSON
 ################################################################################
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 NOTIFY_DIR="$SCRIPT_DIR/../shared/notifications"
@@ -56,15 +57,17 @@ else
     echo "❌ 需要 Python"; exit 1
 fi
 
-UNREAD_COUNT=$($PY -c "
-import json
+UNREAD_COUNT=$(NOTIFY_FILE="$NOTIFY_FILE" $PY -c "
+import json, os
 
-with open('$NOTIFY_FILE', 'r') as f:
+notify_file = os.environ['NOTIFY_FILE']
+
+with open(notify_file, 'r') as f:
     data = json.load(f)
 
 unread = [n for n in data['notifications'] if not n.get('read', False)]
 for n in unread:
-    print(f\"📬 [{n['from']}] {n['subject']}\")
+    print(f\"[{n['from']}] {n['subject']}\")
     if n.get('content'):
         print(f\"   {n['content']}\")
     print()
@@ -73,7 +76,7 @@ for n in unread:
 for n in data['notifications']:
     n['read'] = True
 
-with open('$NOTIFY_FILE', 'w') as f:
+with open(notify_file, 'w') as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
 
 print(f'共 {len(unread)} 条未读通知')
@@ -81,7 +84,8 @@ print(f'共 {len(unread)} 条未读通知')
 
 echo "$UNREAD_COUNT"
 
-# 更新缓存
-echo "$CURRENT_MTIME" > "$CACHE_FILE"
+# 更新缓存（使用写入后的新 mtime，因为标记已读修改了文件）
+NEW_MTIME=$(get_mtime "$NOTIFY_FILE")
+echo "$NEW_MTIME" > "$CACHE_FILE"
 
 exit 1

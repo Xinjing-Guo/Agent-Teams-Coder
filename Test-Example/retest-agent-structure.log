@@ -1,0 +1,9 @@
+================================================================
+  Agent Structure Validation Test
+  Date: 2026-03-17T08:51:43Z
+  Project: /Users/guoxinjing/Library/Mobile Documents/com~apple~CloudDocs/下载_iCloud/Claude_project/Agent_Teams/worktree-claude
+================================================================
+
+test-agent-structure.sh: line 27: declare: -A: invalid option
+declare: usage: declare [-afFirtx] [-p] [name[=value] ...]
+test-agent-structure.sh: line 28: leader: unbound variable

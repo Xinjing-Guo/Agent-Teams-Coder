@@ -1,6 +1,18 @@
 {
-    "meta": {
-        "description": "\u5171\u4eab\u8bb0\u5fc6\u53d8\u66f4\u5ba1\u6279\u961f\u5217 \u2014 \u6210\u5458\u63d0\u4ea4\uff0cLeader \u5ba1\u6279"
-    },
-    "requests": []
+  "meta": {
+    "description": "共享记忆变更审批队列 — 成员提交，Leader 审批"
+  },
+  "requests": [
+    {
+      "id": "req_20260317150125_821",
+      "requester": "unknown",
+      "action": "write",
+      "key": "quote_test",
+      "content": "it's a 'test' value",
+      "reason": "testing quotes",
+      "status": "pending",
+      "reviewer_comment": "",
+      "created_at": "2026-03-17T07:01:25Z"
+    }
+  ]
 }

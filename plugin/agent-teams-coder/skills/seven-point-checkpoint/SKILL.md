@@ -1,14 +1,14 @@
 ---
-name: Seven-Point Checkpoint
-description: Mandatory pre-task checklist that every agent must complete before executing any work. Activates at the start of every task.
-version: 1.0.1
+name: Eight-Point Checkpoint
+description: Mandatory pre-task checklist that every agent must complete before executing any work. Activates at the start of every task. Includes mandatory Chronicle CC on completion.
+version: 1.1.0
 ---
 
-# Seven-Point Mandatory Checkpoint
+# Eight-Point Mandatory Checkpoint
 
-Every agent must complete these 7 steps in order before executing any task.
+Every agent must complete these 8 steps in order before executing any task.
 
-## The 7 Steps
+## The 8 Steps
 
 ### 1. Task Scope Confirmation
 
@@ -50,6 +50,14 @@ Every agent must complete these 7 steps in order before executing any task.
 - Does this task involve git commit/push?
 - If yes → require explicit user authorization
 - Never execute unauthorized git operations
+
+### 8. Chronicle CC on Completion
+
+- When your task is done, you MUST notify Chronicle with your output summary
+- Run: `bash scripts/notify.sh <your_name> chronicle "<task summary>" "<what you did, what you produced, key data, issues found>"`
+- Content must include: action taken, output files, key metrics (counts/pass rates/etc.), issues discovered
+- Chronicle cannot "listen" — it must be actively notified by each member
+- Skipping this step means Chronicle's log will be incomplete
 
 ## Violation Protocol
 

@@ -1,0 +1,31 @@
+{
+  "notifications": [
+    {
+      "id": "notif_20260317145749_478",
+      "from": "euler",
+      "to": "forge",
+      "subject": "test_subject",
+      "content": "hello from testing",
+      "timestamp": "2026-03-17T06:57:49Z",
+      "read": true
+    },
+    {
+      "id": "notif_20260317150056_438",
+      "from": "marshall",
+      "to": "forge",
+      "subject": "broadcast_test",
+      "content": "hello everyone",
+      "timestamp": "2026-03-17T07:00:56Z",
+      "read": true
+    },
+    {
+      "id": "notif_20260317165346_623",
+      "from": "sentinel",
+      "to": "forge",
+      "subject": "Retest Report",
+      "content": "All 4 fixes VERIFIED. BUG-001 to BUG-004 confirmed fixed. Note: test-agent-structure.sh line 27 has same declare -A issue - needs fix in test harness too.",
+      "timestamp": "2026-03-17T08:53:46Z",
+      "read": false
+    }
+  ]
+}
